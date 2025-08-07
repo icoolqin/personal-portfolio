@@ -1,0 +1,9 @@
+{
+  "name": "你的名字",
+  "title": "独立开发者 / 产品经理",
+  "bio": "这里是一段关于你的简介...",
+  "avatar": "/images/profile/avatar.png",
+  "email": "your.email@example.com",
+  "location": "你的城市",
+  "skills": ["Next.js", "TypeScript", "React", "Node.js"]
+}
