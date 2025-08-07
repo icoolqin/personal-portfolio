@@ -813,6 +813,11 @@ touch lib/utils.ts lib/analytics.ts lib/metadata.ts
    ```bash
    # 在 data/apps/ 目录创建 MDX 文件
    touch data/apps/my-new-app.mdx
+   添加新APP: 在 /data/apps/ 创建MDX文件，更新index.json
+   修改个人信息: 编辑 /data/profile.json
+   添加社交账号: 编辑 /data/social.json
+   写博客文章: 在 /data/blog/ 添加MDX文件
+   自定义组件: 在 /components/ 对应目录添加
    ```
 
 2. **编写应用内容**

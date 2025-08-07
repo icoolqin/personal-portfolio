@@ -2,23 +2,34 @@ export interface App {
   id: string;
   slug: string;
   name: string;
-  description: string;
-  category: 'wechat-miniapp' | 'chrome-extension' | 'windows-app' | 'web-app';
-  icon: string;
-  screenshots: string[];
-  features: string[];
-  downloadUrl?: string;
-  demoUrl?: string;
-  githubUrl?: string;
-  releaseDate: string;
-  version: string;
+  shortDescription: string;
+  fullDescription: string;
+  category: string;
+  platform: string[];
   tags: string[];
-  featured: boolean;
+  icon: string;
+  banner?: string;
+  screenshots: string[];
+  video?: string;
+  links: {
+    download?: string;
+    demo?: string;
+    github?: string;
+    documentation?: string;
+  };
+  version: string;
+  releaseDate: string;
+  lastUpdateDate: string;
   stats?: {
     users?: number;
-    rating?: number;
     downloads?: number;
+    rating?: number;
+    reviews?: number;
   };
+  features: string[];
+  techStack: string[];
+  featured: boolean;
+  price?: string;
 }
 
 export interface Profile {

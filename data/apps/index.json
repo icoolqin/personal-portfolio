@@ -1,0 +1,38 @@
+{
+  "apps": [
+    {
+      "id": "desktop-switcher",
+      "slug": "desktop-switcher",
+      "name": "DesktopSwitcher",
+      "shortDescription": "Your Virtual Desktops, Just a Click Away",
+      "fullDescription": "DesktopSwitcher是一个强大的虚拟桌面管理工具，让你轻松在多个虚拟桌面之间切换。只需将鼠标移动到屏幕底部边缘，就能通过滚轮快速切换桌面，或者按住Ctrl键进行应用切换。",
+      "category": "桌面工具",
+      "platform": ["Windows 10", "Windows 11"],
+      "tags": ["虚拟桌面", "生产力", "桌面管理", "效率工具"],
+      "icon": "/images/DesktopSwitcher.png",
+      "banner": "/images/DesktopSwitcher.png",
+      "screenshots": ["/images/DesktopSwitcher.png"],
+      "links": {
+        "download": "#",
+        "demo": "#"
+      },
+      "version": "1.0.0",
+      "releaseDate": "2024-01-01",
+      "lastUpdateDate": "2024-01-01",
+      "stats": {
+        "users": 1000,
+        "rating": 4.8
+      },
+      "features": [
+        "鼠标滚轮快速切换桌面",
+        "Ctrl+滚轮应用切换",
+        "中键点击打开任务视图",
+        "轻量级无干扰设计",
+        "智能视觉提示"
+      ],
+      "techStack": ["C++", "Windows API"],
+      "featured": true,
+      "price": "$2.99"
+    }
+  ]
+}
