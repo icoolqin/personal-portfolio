@@ -4,7 +4,7 @@ export function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="font-semibold text-lg mb-4">个人作品集</h3>
+            <h3 className="font-semibold text-lg mb-4">大古的个人作品集</h3>
             <p className="text-muted-foreground">
               展示我的应用作品，分享技术心得。
             </p>
@@ -22,14 +22,14 @@ export function Footer() {
           <div>
             <h4 className="font-medium mb-4">联系方式</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>邮箱: your.email@example.com</li>
-              <li>GitHub: @yourusername</li>
+              <li>邮箱: icoolqin@gmail.com</li>
+              <li>GitHub: <a href="https://github.com/icoolqin" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">@icoolqin</a></li>
             </ul>
           </div>
         </div>
         
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 个人作品集. All rights reserved.</p>
+          <p>&copy; 2025 大古的个人作品集. All rights reserved.</p>
         </div>
       </div>
     </footer>
