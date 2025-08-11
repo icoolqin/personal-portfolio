@@ -7,7 +7,7 @@ export function Header() {
       <div className="container mx-auto flex h-14 items-center px-4">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold text-xl">个人作品集</span>
+            <span className="font-bold text-xl">大吉的个人作品集</span>
           </Link>
         </div>
         
