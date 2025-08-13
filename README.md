@@ -1050,3 +1050,107 @@ console.timeEnd('ComponentRender');
 - [ ] 配置自定义域名
 - [ ] 设置分析服务
 - [ ] 发布上线
+
+## 更多项目介绍：
+项目结构概览
+这是一个典型的 Next.js 项目结构。Next.js 是一个流行的 React 框架，用于构建现代 Web 应用程序。
+
+核心应用代码在 app/ 和 components/ 目录中。
+数据和内容存放在 data/ 目录中。
+配置文件位于 config/ 和根目录。
+公共静态资源（如图片）在 public/ 目录中。
+文件夹和文件详解
+app/
+这个目录是 Next.js 13+ 的核心，负责应用的路由和页面。
+
+app/layout.tsx: 这是最顶层的布局文件，包含了网站的 <html> 和 <body> 标签。如果你想修改所有页面的通用背景、字体或者添加全局的 meta 标签，可以编辑这个文件。
+app/page.tsx: 这是网站的主页（/ 路径）。如果你想修改首页的内容，这里是你要找的文件。
+app/globals.css: 全局 CSS 样式文件。你可以在这里定义整个网站通用的样式。
+app/favicon.ico: 网站在浏览器标签页上显示的小图标。
+app/apps/: 这个文件夹定义了 /apps 相关的路由。
+app/apps/page.tsx: /apps 路径的页面，可能会展示一个应用列表。
+app/apps/[slug]/: 这是一个动态路由。[slug] 是一个占位符，代表任何一个应用的名称。例如，/apps/desktop-switcher 就会匹配到这个路由。
+app/apps/[slug]/page.tsx: 这是单个应用详情页面的模板。当用户访问一个具体的应用页面时，这个文件会负责渲染页面内容。
+维护指南：
+
+要修改主页，请编辑 app/page.tsx。
+要修改所有页面的共同布局（比如添加一个全局的导航栏或页脚），请编辑 app/layout.tsx。
+要添加一个新的页面/路由，可以在 app/ 下创建一个新的文件夹和 page.tsx 文件。
+要修改应用列表页，请编辑 app/apps/page.tsx。
+要修改应用详情页的模板，请编辑 app/apps/[slug]/page.tsx。
+components/
+这个目录存放了所有可复用的 React 组件。把UI拆分成小组件是 React 开发的最佳实践。
+
+components/ui/: 存放最基础的 UI 元素。
+badge.tsx: 徽章组件。
+button.tsx: 按钮组件。
+card.tsx: 卡片组件。
+components/layout/: 存放构成页面布局的组件。
+header.tsx: 网站的页头/导航栏。
+footer.tsx: 网站的页脚。
+components/app/: 存放与“应用”功能相关的特定组件。
+app-card.tsx: 用于在列表里显示单个应用的卡片。
+featured-app.tsx: 用于在主页等地方展示特色应用的组件。
+components/mdx/: 如果项目中使用 MDX（在 Markdown 中写 JSX），这里可能包含处理 MDX 内容的组件。
+维护指南：
+
+如果你想修改网站的导航栏，请编辑 components/layout/header.tsx。
+如果你想修改网站的页脚，请编辑 components/layout/footer.tsx。
+如果你想调整按钮、卡片等基础UI元素的样式或功能，请查看 components/ui/ 里的对应文件。
+当你发现多个页面有重复的UI部分时，可以考虑把它提取成一个新的组件放到这个文件夹里。
+data/
+这个目录存放了网站使用的非代码数据，实现了代码和内容的分离。
+
+data/profile.json: 存放个人信息的数据，比如你的名字、简介、社交链接等。
+data/apps/: 存放所有应用项目的数据。
+index.json: 可能是所有应用项目的列表索引，包含了每个应用的元数据（如标题、描述、图片链接等）。
+desktop-switcher.mdx: 这是一个 MDX 文件，很可能包含了 "Desktop Switcher" 这个应用的详细介绍。使用 MDX 格式可以让你在写文章的同时，还能嵌入 React 组件。
+维护指南：
+
+要更新你的个人信息，请编辑 data/profile.json。
+要添加、删除或修改一个应用项目，你需要：
+1.
+在 data/apps/index.json 中更新应用的条目。
+2.
+（如果需要）在 data/apps/ 目录下添加或修改对应的 .mdx 详细描述文件。
+config/
+存放项目的配置文件。
+
+config/site.ts: 存放网站的全局配置，比如网站名称、描述、URL等。
+维护指南：
+
+要修改网站的名称或描述等元数据，请编辑 config/site.ts。
+public/
+这个目录用于存放静态资源，这里的文件可以被浏览器直接访问。
+
+public/images/: 存放图片资源，比如你的头像 (avatar_me.png) 和项目截图。
+public/file.svg, globe.svg, next.svg, vercel.svg, window.svg: 这些是项目中用到的 SVG 图标。
+维护指南：
+
+要添加新的图片，直接把图片文件放入 public/images/ 文件夹，然后在代码中通过 /images/your-image-name.png 这样的路径来使用它。
+要更换头像，可以用新的图片替换 public/images/avatar_me.png。
+lib/ 和 types/
+这两个文件夹用于存放辅助代码。
+
+lib/utils.ts: 存放通用的辅助函数，比如格式化日期、处理字符串等。
+lib/analytics.ts: 可能用于集成网站分析工具（如 Google Analytics）。
+types/index.ts: 存放自定义的 TypeScript 类型定义。这有助于代码的健壮性和可维护性。
+维护指南：
+
+如果你有一些在项目中多处使用的函数，可以把它们放到 lib/utils.ts 中。
+如果你在项目中定义了一些复杂的数据结构（比如一个 App 或 Profile 对象），最好在 types/index.ts 中为它们创建类型定义。
+根目录下的配置文件
+这些是项目构建和开发环境的配置文件。通常你不需要经常修改它们，除非你要改变项目的构建方式或依赖库。
+
+next.config.ts: Next.js 的主配置文件。
+tailwind.config.ts: Tailwind CSS 的配置文件。如果你想自定义颜色、字体、间距等设计系统的变量，可以修改这里。
+package.json: 定义了项目的依赖库和脚本命令（如 npm run dev）。
+tsconfig.json: TypeScript 编译器配置。
+.gitignore: 告诉 Git 哪些文件或文件夹不需要被版本控制。
+README.md: 项目的说明文档。
+总结
+想改页面内容？ 去 app/ 目录找对应的 page.tsx，或者去 data/ 目录修改数据。
+想改页面样式或组件？ 去 components/ 目录找对应的组件文件，或者修改 globals.css 和 tailwind.config.ts。
+想添加一个项目？ 主要修改 data/apps/ 目录下的文件。
+想改网站名字？ 去 config/site.ts。
+想换图片？ 去 public/images/。
