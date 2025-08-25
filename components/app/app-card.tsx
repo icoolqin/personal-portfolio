@@ -73,13 +73,7 @@ export function AppCard({ app }: AppCardProps) {
             </Button>
           )}
           
-          {app.links.demo && (
-            <Button asChild variant="outline" size="sm">
-              <a href={app.links.demo} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            </Button>
-          )}
+
         </div>
       </CardContent>
     </Card>

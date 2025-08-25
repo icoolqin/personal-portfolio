@@ -9,7 +9,7 @@
       "category": "桌面工具",
       "platform": ["Windows 10", "Windows 11"],
       "tags": ["虚拟桌面", "生产力", "桌面管理", "效率工具"],
-      "icon": "/images/DesktopSwitcher.png",
+      "icon": "/images/desktop_switcher.png",
       "banner": "/images/DesktopSwitcher.png",
       "screenshots": ["/images/DesktopSwitcher.png"],
       "links": {

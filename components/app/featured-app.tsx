@@ -11,7 +11,7 @@ interface FeaturedAppProps {
 
 export function FeaturedApp({ app }: FeaturedAppProps) {
   return (
-    <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900">
+    <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900">
       <div className="container mx-auto px-6 py-12 lg:py-16">
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* 左侧内容 */}
@@ -22,7 +22,7 @@ export function FeaturedApp({ app }: FeaturedAppProps) {
                 alt={`${app.name} icon`}
                 width={60}
                 height={60}
-                className="rounded-xl shadow-lg"
+                className="shadow-lg"
               />
               <div>
                 <Badge className="mb-2">精选应用</Badge>
@@ -83,14 +83,7 @@ export function FeaturedApp({ app }: FeaturedAppProps) {
                 </Button>
               )}
               
-              {app.links.demo && (
-                <Button asChild variant="outline" size="lg">
-                  <a href={app.links.demo} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    在线体验
-                  </a>
-                </Button>
-              )}
+
             </div>
             
             {app.price && (
@@ -102,7 +95,7 @@ export function FeaturedApp({ app }: FeaturedAppProps) {
           
           {/* 右侧图片 */}
           <div className="relative">
-            <div className="relative h-96 lg:h-[500px] rounded-xl overflow-hidden shadow-2xl">
+            <div className="relative h-96 lg:h-[500px] overflow-hidden shadow-2xl">
               <Image
                 src={app.banner || app.screenshots[0] || app.icon}
                 alt={app.name}
