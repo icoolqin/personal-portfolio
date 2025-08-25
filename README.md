@@ -805,6 +805,86 @@ touch config/site.ts config/seo.ts config/nav.ts
 touch lib/utils.ts lib/analytics.ts lib/metadata.ts
 ```
 
+### 9.4 本地运行
+
+完成项目初始化后，可以使用以下命令在本地运行项目：
+
+```bash
+# 启动开发服务器
+pnpm dev
+# 或者使用 npm/yarn
+npm run dev
+yarn dev
+
+# 开发服务器将在 http://localhost:3000 启动
+```
+
+#### 9.4.1 常用开发命令
+
+```bash
+# 启动开发服务器（默认端口 3000）
+pnpm dev
+
+# 指定端口启动
+pnpm dev -- -p 3001
+
+# 构建生产版本
+pnpm build
+
+# 预览生产构建
+pnpm start
+
+# 运行代码检查
+pnpm lint
+
+# 修复代码格式
+pnpm lint --fix
+
+# 运行类型检查
+pnpm type-check
+```
+
+#### 9.4.2 开发环境配置
+
+1. **环境变量设置**
+   ```bash
+   # 复制环境变量模板
+   cp .env.example .env.local
+   
+   # 编辑环境变量
+   # .env.local
+   NEXT_PUBLIC_SITE_URL=http://localhost:3000
+   NEXT_PUBLIC_SITE_NAME="Your Name"
+   NEXT_PUBLIC_ENABLE_ANALYTICS=false
+   ```
+
+2. **首次运行检查清单**
+   - [ ] Node.js 版本 >= 18.17
+   - [ ] 依赖安装完成
+   - [ ] 环境变量配置
+   - [ ] 开发服务器正常启动
+   - [ ] 页面可以正常访问
+
+#### 9.4.3 开发工作流
+
+```bash
+# 1. 拉取最新代码
+git pull origin main
+
+# 2. 安装/更新依赖
+pnpm install
+
+# 3. 启动开发服务器
+pnpm dev
+
+# 4. 开始开发...
+
+# 5. 提交代码前检查
+pnpm lint
+pnpm type-check
+pnpm build
+```
+
 ## 十、开发指南
 
 ### 10.1 添加新应用
