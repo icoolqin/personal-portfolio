@@ -8,6 +8,9 @@ import { Download, ExternalLink, Github, Star, Users, Calendar, Tag } from "luci
 import { FaChrome, FaEdge } from "react-icons/fa6";
 import appsData from "@/data/apps/index.json";
 import type { App } from "@/types";
+import fs from "fs";
+import path from "path";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
 interface AppPageProps {
   params: {
@@ -15,7 +18,47 @@ interface AppPageProps {
   };
 }
 
-export default function AppPage({ params }: AppPageProps) {
+// 自定义 MDX 组件样式
+const mdxComponents = {
+  h1: (props: any) => <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />,
+  h2: (props: any) => <h2 className="text-2xl font-bold mt-6 mb-3" {...props} />,
+  h3: (props: any) => <h3 className="text-xl font-semibold mt-4 mb-2" {...props} />,
+  p: (props: any) => <p className="mb-4 leading-relaxed" {...props} />,
+  ul: (props: any) => <ul className="list-disc list-inside mb-4 space-y-2" {...props} />,
+  ol: (props: any) => <ol className="list-decimal list-inside mb-4 space-y-2" {...props} />,
+  li: (props: any) => <li className="ml-4" {...props} />,
+  blockquote: (props: any) => (
+    <blockquote className="border-l-4 border-blue-500 pl-4 my-4 italic" {...props} />
+  ),
+  code: (props: any) => (
+    <code className="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm" {...props} />
+  ),
+  pre: (props: any) => (
+    <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto mb-4" {...props} />
+  ),
+  hr: () => <hr className="my-8 border-gray-300 dark:border-gray-700" />,
+};
+
+// 预处理 MDX 内容，修复常见问题
+function preprocessMDX(content: string): string {
+  // 移除 frontmatter
+  if (content.startsWith('---')) {
+    const endOfFrontmatter = content.indexOf('---', 3);
+    if (endOfFrontmatter !== -1) {
+      content = content.slice(endOfFrontmatter + 3).trim();
+    }
+  }
+  
+  // 修复可能的问题：将 "桌面1" 这样的文本改为 "桌面 1"
+  content = content.replace(/桌面(\d)/g, '桌面 $1');
+  
+  // 确保列表项前有空行
+  content = content.replace(/([^\n])\n(-|\*|\d+\.)/g, '$1\n\n$2');
+  
+  return content;
+}
+
+export default async function AppPage({ params }: AppPageProps) {
   const apps = appsData.apps as App[];
   const app = apps.find(a => a.slug === params.slug);
 
@@ -23,9 +66,38 @@ export default function AppPage({ params }: AppPageProps) {
     notFound();
   }
 
+  // 读取 MDX 内容
+  let mdxContent = null;
+  let hasMdxContent = false;
+  
+  try {
+    const mdxPath = path.join(process.cwd(), 'data', 'apps', `${params.slug}.mdx`);
+    if (fs.existsSync(mdxPath)) {
+      const rawContent = fs.readFileSync(mdxPath, 'utf-8');
+      const processedContent = preprocessMDX(rawContent);
+      
+      // 尝试渲染 MDX
+      try {
+        mdxContent = (
+          <MDXRemote 
+            source={processedContent} 
+            components={mdxComponents}
+          />
+        );
+        hasMdxContent = true;
+      } catch (mdxError) {
+        console.error(`Error parsing MDX for ${params.slug}:`, mdxError);
+        // 如果 MDX 解析失败，回退到纯文本显示
+        hasMdxContent = false;
+      }
+    }
+  } catch (error) {
+    console.log(`MDX file not found for ${params.slug}`);
+  }
+
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* 应用头部信息 */}
+      {/* 应用头部信息 - 保持不变 */}
       <div className="grid lg:grid-cols-3 gap-8 mb-12">
         <div className="lg:col-span-2">
           <div className="flex items-start gap-6 mb-6">
@@ -80,7 +152,7 @@ export default function AppPage({ params }: AppPageProps) {
                   >
                     <a href={(app.links as any).chrome} target="_blank" rel="noopener noreferrer">
                       <FaChrome className="w-5 h-5 mr-2" />
-                      Chrome插件市场
+                      Chrome 网上应用店
                     </a>
                   </Button>
                 )}
@@ -93,14 +165,14 @@ export default function AppPage({ params }: AppPageProps) {
                   >
                     <a href={(app.links as any).edge} target="_blank" rel="noopener noreferrer">
                       <FaEdge className="w-5 h-5 mr-2" />
-                      Microsoft Edge插件市场
+                      Microsoft Edge 加载项
                     </a>
                   </Button>
                 )}
               </>
             )}
             
-            {/* 通用下载按钮（用于其他应用） */}
+            {/* 通用下载按钮 */}
             {app.slug !== 'desktop-switcher' && app.slug !== 'onesearch' && app.links.download && (
               <Button asChild size="lg" className="shadow-md hover:shadow-lg transition-shadow">
                 <a href={app.links.download} target="_blank" rel="noopener noreferrer">
@@ -110,7 +182,7 @@ export default function AppPage({ params }: AppPageProps) {
               </Button>
             )}
             
-            {/* 外部链接按钮 */}
+            {/* 其他按钮 */}
             {app.links.demo && (
               <Button asChild variant="outline" size="lg">
                 <a href={app.links.demo} target="_blank" rel="noopener noreferrer">
@@ -120,7 +192,6 @@ export default function AppPage({ params }: AppPageProps) {
               </Button>
             )}
             
-            {/* GitHub 按钮 */}
             {app.links.github && (
               <Button asChild variant="outline" size="lg">
                 <a href={app.links.github} target="_blank" rel="noopener noreferrer">
@@ -132,9 +203,8 @@ export default function AppPage({ params }: AppPageProps) {
           </div>
         </div>
         
-        {/* 侧边栏信息 */}
+        {/* 侧边栏信息 - 保持不变 */}
         <div className="space-y-6">
-          {/* 统计信息 */}
           {app.stats && (
             <Card>
               <CardHeader>
@@ -167,7 +237,6 @@ export default function AppPage({ params }: AppPageProps) {
             </Card>
           )}
           
-          {/* 技术栈 */}
           {app.techStack && app.techStack.length > 0 && (
             <Card>
               <CardHeader>
@@ -185,7 +254,6 @@ export default function AppPage({ params }: AppPageProps) {
             </Card>
           )}
           
-          {/* 标签 */}
           {app.tags && app.tags.length > 0 && (
             <Card>
               <CardHeader>
@@ -240,17 +308,46 @@ export default function AppPage({ params }: AppPageProps) {
         </section>
       )}
       
-      {/* 详细描述 */}
+      {/* 详细介绍 */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-6">详细介绍</h2>
-        <div className="prose prose-lg max-w-none dark:prose-invert">
-          {app.fullDescription.split('\n').filter(p => p.trim()).map((paragraph, index) => (
-            <p key={index} className="mb-4 leading-relaxed">
-              {paragraph}
-            </p>
-          ))}
+        <div className="prose prose-lg max-w-none dark:prose-invert
+                        prose-headings:font-bold 
+                        prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl
+                        prose-p:text-gray-700 dark:prose-p:text-gray-300
+                        prose-strong:text-gray-900 dark:prose-strong:text-gray-100
+                        prose-ul:list-disc prose-ol:list-decimal
+                        prose-li:ml-4
+                        prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-4
+                        prose-code:bg-gray-100 dark:prose-code:bg-gray-800
+                        prose-code:px-1 prose-code:py-0.5 prose-code:rounded
+                        prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800
+                        prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline">
+          {hasMdxContent ? (
+            mdxContent
+          ) : (
+            app.fullDescription.split('\n').filter(p => p.trim()).map((paragraph, index) => (
+              <p key={index} className="mb-4">
+                {paragraph}
+              </p>
+            ))
+          )}
         </div>
       </section>
+      
+      {/* 返回按钮 */}
+      <div className="flex justify-center gap-4 pt-8 border-t">
+        <Button asChild variant="outline" size="lg">
+          <Link href="/apps">
+            ← 返回应用列表
+          </Link>
+        </Button>
+        <Button asChild variant="ghost" size="lg">
+          <Link href="/">
+            返回首页
+          </Link>
+        </Button>
+      </div>
     </div>
   );
 }
