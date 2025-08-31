@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FeaturedApp } from "@/components/app/featured-app";
+import { FeaturedCarousel } from "@/components/app/featured-carousel";
 import { AppCard } from "@/components/app/app-card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -8,14 +8,14 @@ import type { App } from "@/types";
 
 export default function Home() {
   const apps = appsData.apps as App[];
-  const featuredApp = apps.find(app => app.featured);
+  const featuredApps = apps.filter(app => app.featured);
   const otherApps = apps.filter(app => !app.featured).slice(0, 3);
 
   return (
     <div className="space-y-16">
-      {/* 英雄区域 - 精选应用 */}
-      {featuredApp && (
-        <FeaturedApp app={featuredApp} showPrice={false} />
+      {/* 英雄区域 - 精选应用轮播 */}
+      {featuredApps.length > 0 && (
+        <FeaturedCarousel apps={featuredApps} autoPlayInterval={8000} />
       )}
       
       {/* 其他应用展示 */}
