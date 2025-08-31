@@ -15,7 +15,7 @@ export default function Home() {
     <div className="space-y-16">
       {/* 英雄区域 - 精选应用 */}
       {featuredApp && (
-        <FeaturedApp app={featuredApp} />
+        <FeaturedApp app={featuredApp} showPrice={false} />
       )}
       
       {/* 其他应用展示 */}

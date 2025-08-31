@@ -7,9 +7,10 @@ import type { App } from "@/types";
 
 interface FeaturedAppProps {
   app: App;
+  showPrice?: boolean; // 添加可选的 showPrice prop，默认为 true
 }
 
-export function FeaturedApp({ app }: FeaturedAppProps) {
+export function FeaturedApp({ app, showPrice = true }: FeaturedAppProps) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900">
       <div className="container mx-auto px-6 py-12 lg:py-16">
@@ -82,11 +83,10 @@ export function FeaturedApp({ app }: FeaturedAppProps) {
                   </a>
                 </Button>
               )}
-              
-
             </div>
             
-            {app.price && (
+            {/* 条件显示价格 */}
+            {showPrice && app.price && (
               <p className="text-2xl font-bold text-green-600 dark:text-green-400">
                 {app.price}
               </p>

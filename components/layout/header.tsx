@@ -31,12 +31,6 @@ export function Header() {
             关于
           </Link>
         </nav>
-        
-        <div className="flex flex-1 items-center justify-end space-x-2">
-          <Button asChild variant="outline" size="sm">
-            <Link href="/contact">联系我</Link>
-          </Button>
-        </div>
       </div>
     </header>
   );
