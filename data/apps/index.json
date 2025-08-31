@@ -13,7 +13,7 @@
       "banner": "/images/DesktopSwitcher.png",
       "screenshots": ["/images/DesktopSwitcher.png"],
       "links": {
-        "download": "#",
+        "download": "https://coolqin.gumroad.com/l/desktopswitcher?_gl=1*1wsrn7r*_ga*MzA5MzkzNTI1LjE3MzI1NDkxNzE.*_ga_6LJN6D94N6*czE3NTY2NTA1NTgkbzkkZzEkdDE3NTY2NTA1NjckajUxJGwwJGgw",
         "demo": "#"
       },
       "version": "1.0.0",
@@ -48,8 +48,8 @@
       "screenshots": ["/images/oneSearch.png"],
       "links": {
         "download": "#",
-        "chrome": "#",
-        "edge": "#"
+        "chrome": "https://chromewebstore.google.com/detail/onesearch-bookmark-multi/jmeceipkifhfndacgnmcbhohnmgcbadn",
+        "edge": "https://microsoftedge.microsoft.com/addons/detail/onesearch-bookmark-mul/lahijnillhgiklgldmoaahkmcpdchfik"
       },
       "version": "2.0.0",
       "releaseDate": "2024-03-01",

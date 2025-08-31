@@ -196,24 +196,34 @@ export function FeaturedCarousel({
             
             {/* 操作按钮 */}
             <div className="flex gap-3">
-              <Button asChild size="lg" className="shadow-lg hover:shadow-xl transition-shadow">
+            <Button asChild size="lg" className="shadow-lg hover:shadow-xl transition-shadow">
                 <Link href={`/apps/${currentApp.slug}`}>
-                  了解更多
+                了解更多
                 </Link>
-              </Button>
-              
-              {currentApp.links.download && (
+            </Button>
+            
+            {/* 根据不同应用显示不同的下载按钮 */}
+            {currentApp.slug === 'desktop-switcher' && currentApp.links.download && (
                 <Button asChild variant="outline" size="lg" className="shadow-md hover:shadow-lg transition-shadow">
-                  <a 
+                <a 
                     href={currentApp.links.download} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                  >
+                >
                     <Download className="w-4 h-4 mr-2" />
                     立即获取
-                  </a>
+                </a>
                 </Button>
-              )}
+            )}
+            
+            {currentApp.slug === 'onesearch' && (
+                <Button asChild variant="outline" size="lg" className="shadow-md hover:shadow-lg transition-shadow">
+                <Link href={`/apps/${currentApp.slug}`}>
+                    <Download className="w-4 h-4 mr-2" />
+                    获取插件
+                </Link>
+                </Button>
+            )}
             </div>
             
             {/* 价格显示 */}
