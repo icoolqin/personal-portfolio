@@ -77,7 +77,7 @@ export function FeaturedApp({ app, showPrice = true }: FeaturedAppProps) {
               
               {app.links.download && (
                 <Button asChild variant="outline" size="lg">
-                  <a href={app.links.download} target="_blank" rel="noopener noreferrer">
+                  <a href="https://coolqin.gumroad.com/l/desktopswitcher?_gl=1*1wsrn7r*_ga*MzA5MzkzNTI1LjE3MzI1NDkxNzE.*_ga_6LJN6D94N6*czE3NTY2NTA1NTgkbzkkZzEkdDE3NTY2NTA1NjckajUxJGwwJGgw" target="_blank" rel="noopener noreferrer">
                     <Download className="w-4 h-4 mr-2" />
                     下载应用
                   </a>

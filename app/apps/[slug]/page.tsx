@@ -60,18 +60,9 @@ export default function AppPage({ params }: AppPageProps) {
           <div className="flex gap-3 mb-8">
             {app.links.download && (
               <Button asChild size="lg">
-                <a href={app.links.download} target="_blank" rel="noopener noreferrer">
+                <a href="https://coolqin.gumroad.com/l/desktopswitcher?_gl=1*1wsrn7r*_ga*MzA5MzkzNTI1LjE3MzI1NDkxNzE.*_ga_6LJN6D94N6*czE3NTY2NTA1NTgkbzkkZzEkdDE3NTY2NTA1NjckajUxJGwwJGgw" target="_blank" rel="noopener noreferrer">
                   <Download className="w-5 h-5 mr-2" />
                   下载应用
-                </a>
-              </Button>
-            )}
-            
-            {app.links.demo && (
-              <Button asChild variant="outline" size="lg">
-                <a href={app.links.demo} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="w-5 h-5 mr-2" />
-                  在线体验
                 </a>
               </Button>
             )}
