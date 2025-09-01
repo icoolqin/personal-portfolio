@@ -24,9 +24,9 @@ const mdxComponents = {
   h2: (props: any) => <h2 className="text-2xl font-bold mt-6 mb-3" {...props} />,
   h3: (props: any) => <h3 className="text-xl font-semibold mt-4 mb-2" {...props} />,
   p: (props: any) => <p className="mb-4 leading-relaxed" {...props} />,
-  ul: (props: any) => <ul className="list-disc list-inside mb-4 space-y-2" {...props} />,
-  ol: (props: any) => <ol className="list-decimal list-inside mb-4 space-y-2" {...props} />,
-  li: (props: any) => <li className="ml-4" {...props} />,
+  ul: (props: any) => <ul className="list-disc list-outside mb-4 space-y-2 ml-6" {...props} />,
+  ol: (props: any) => <ol className="list-decimal list-outside mb-4 space-y-2 ml-6" {...props} />,
+  li: (props: any) => <li className="leading-relaxed" {...props} />,
   blockquote: (props: any) => (
     <blockquote className="border-l-4 border-blue-500 pl-4 my-4 italic" {...props} />
   ),
@@ -98,7 +98,7 @@ export default async function AppPage({ params }: AppPageProps) {
   return (
     <div className="container mx-auto px-4 py-8">
       {/* 应用头部信息 - 保持不变 */}
-      <div className="grid lg:grid-cols-3 gap-8 mb-12">
+      <div className="grid lg:grid-cols-3 gap-8 mb-12 items-start">
         <div className="lg:col-span-2">
           <div className="flex items-start gap-6 mb-6">
             <Image
@@ -280,7 +280,7 @@ export default async function AppPage({ params }: AppPageProps) {
           <h2 className="text-2xl font-bold mb-6">应用截图</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {app.screenshots.map((screenshot, index) => (
-              <div key={index} className="relative h-64 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+              <div key={index} className="relative h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
                 <Image
                   src={screenshot}
                   alt={`${app.name} screenshot ${index + 1}`}
