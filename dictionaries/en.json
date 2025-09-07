@@ -1,0 +1,76 @@
+{
+  "navigation": {
+    "home": "Home",
+    "apps": "Apps",
+    "about": "About"
+  },
+  "common": {
+    "viewAll": "View All Apps",
+    "learnMore": "Learn More",
+    "sendEmail": "Send Email",
+    "download": "Download",
+    "demo": "Demo",
+    "version": "Version",
+    "price": "Price",
+    "free": "Free",
+    "users": "Users",
+    "rating": "Rating",
+    "features": "Features",
+    "techStack": "Tech Stack",
+    "platform": "Platform",
+    "category": "Category",
+    "tags": "Tags",
+    "releaseDate": "Release Date",
+    "lastUpdate": "Last Update",
+    "allRightsReserved": "All rights reserved"
+  },
+  "home": {
+    "title": "Personal Portfolio - Showcase My App Works",
+    "description": "A website showcasing my app works, including desktop applications, web applications, and more.",
+    "moreApps": "More Apps",
+    "moreAppsDescription": "Explore other applications I've developed, each dedicated to enhancing your digital experience.",
+    "aboutMe": "About Me",
+    "aboutMeDescription": "I am an independent developer focused on creating practical and beautiful applications. I believe technology should make life simpler and more efficient. Every application is my pursuit of perfect user experience."
+  },
+  "apps": {
+    "title": "My Apps",
+    "description": "Here are all the applications I've developed, each carefully designed and built."
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Learn more about my background, skills, and development philosophy",
+    "aboutMeTitle": "About Me",
+    "aboutMeContent1": "I am a technology-loving independent developer focused on creating practical and beautiful applications. I believe technology should make life simpler and more efficient, and every application is my pursuit of perfect user experience.",
+    "aboutMeContent2": "As a product manager, I deeply understand user needs and am good at transforming complex problems into simple solutions. At the same time, I actively embrace the AI era and skillfully use various AI tools to improve development efficiency and product quality.",
+    "philosophy": "Development Philosophy",
+    "philosophyItems": [
+      "User experience first, every detail must be carefully crafted",
+      "Simple yet powerful, avoiding unnecessary complexity",
+      "Continuous learning, embracing new technologies and tools",
+      "Open source spirit, sharing knowledge and experience"
+    ],
+    "techStackTitle": "Tech Stack & Tools",
+    "frontend": "Frontend Development",
+    "desktop": "Desktop Development",
+    "aiTools": "AI Tools",
+    "contactMe": "Contact Me",
+    "contactDescription": "If you're interested in my work or have any collaboration ideas, feel free to contact me anytime!"
+  },
+  "footer": {
+    "title": "Daji's Personal Portfolio",
+    "description": "Showcasing my app works and sharing technical insights.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "email": "Email"
+  },
+  "header": {
+    "title": "Daji's Personal Portfolio",
+    "switchLanguage": "Switch Language"
+  },
+  "profile": {
+    "name": "Daji",
+    "title": "Independent Developer / Product Manager",
+    "location": "Shanghai",
+    "skills": ["Product Manager", "Various AI Tools"]
+  }
+}

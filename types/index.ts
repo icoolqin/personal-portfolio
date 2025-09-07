@@ -8,28 +8,25 @@ export interface App {
   platform: string[];
   tags: string[];
   icon: string;
-  banner?: string;
+  banner: string;
   screenshots: string[];
-  video?: string;
   links: {
     download?: string;
     demo?: string;
-    github?: string;
-    documentation?: string;
+    chrome?: string;
+    edge?: string;
   };
   version: string;
   releaseDate: string;
   lastUpdateDate: string;
-  stats?: {
-    users?: number;
-    downloads?: number;
-    rating?: number;
-    reviews?: number;
+  stats: {
+    users: number;
+    rating: number;
   };
   features: string[];
   techStack: string[];
   featured: boolean;
-  price?: string;
+  price: string;
 }
 
 export interface Profile {

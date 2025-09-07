@@ -1,0 +1,74 @@
+{
+  "apps": [
+    {
+      "id": "desktop-switcher",
+      "slug": "desktop-switcher",
+      "name": "DesktopSwitcher",
+      "shortDescription": "虚拟桌面，一键切换",
+      "fullDescription": "DesktopSwitcher是一个强大的虚拟桌面管理工具，让你轻松在多个虚拟桌面之间切换。只需将鼠标移动到屏幕底部边缘，就能通过滚轮快速切换桌面，或者按住Ctrl键进行应用切换。",
+      "category": "桌面工具",
+      "platform": ["Windows 10", "Windows 11"],
+      "tags": ["虚拟桌面", "生产力", "桌面管理", "效率工具"],
+      "icon": "/images/desktop_switcher.png",
+      "banner": "/images/DesktopSwitcher.png",
+      "screenshots": ["/images/DesktopSwitcher.png"],
+      "links": {
+        "download": "https://coolqin.gumroad.com/l/desktopswitcher?_gl=1*1wsrn7r*_ga*MzA5MzkzNTI1LjE3MzI1NDkxNzE.*_ga_6LJN6D94N6*czE3NTY2NTA1NTgkbzkkZzEkdDE3NTY2NTA1NjckajUxJGwwJGgw",
+        "demo": "#"
+      },
+      "version": "1.0.0",
+      "releaseDate": "2024-01-01",
+      "lastUpdateDate": "2024-01-01",
+      "stats": {
+        "users": 1000,
+        "rating": 4.8
+      },
+      "features": [
+        "鼠标滚轮快速切换桌面",
+        "Ctrl+滚轮应用切换",
+        "中键点击打开任务视图",
+        "轻量级无干扰设计",
+        "智能视觉提示"
+      ],
+      "techStack": ["C++", "Windows API"],
+      "featured": true,
+      "price": "$2.99"
+    },
+    {
+      "id": "onesearch",
+      "slug": "onesearch",
+      "name": "OneSearch",
+      "shortDescription": "书签管理从未如此轻松",
+      "fullDescription": "书签管理从未如此轻松！现已支持AI搜索 & 完全键盘操作！OneSearch 是一款强大的浏览器插件，让您的书签管理变得前所未有的高效。通过智能分类、闪电般的搜索速度和全新的AI搜索功能，告别杂乱无序的书签管理。",
+      "category": "浏览器插件",
+      "platform": ["Chrome", "Microsoft Edge"],
+      "tags": ["书签管理", "AI搜索", "生产力", "浏览器扩展", "键盘快捷键"],
+      "icon": "/images/oneSearch.webp",
+      "banner": "/images/oneSearch.png",
+      "screenshots": ["/images/oneSearch.png"],
+      "links": {
+        "download": "#",
+        "chrome": "https://chromewebstore.google.com/detail/onesearch-bookmark-multi/jmeceipkifhfndacgnmcbhohnmgcbadn",
+        "edge": "https://microsoftedge.microsoft.com/addons/detail/onesearch-bookmark-mul/lahijnillhgiklgldmoaahkmcpdchfik"
+      },
+      "version": "2.0.0",
+      "releaseDate": "2024-03-01",
+      "lastUpdateDate": "2024-12-01",
+      "stats": {
+        "users": 5000,
+        "rating": 4.9
+      },
+      "features": [
+        "闪电般的书签搜索",
+        "智能三大模块分类",
+        "多AI搜索引擎集成",
+        "完全键盘操作支持",
+        "个性化书签栏定制",
+        "拖拽排序功能"
+      ],
+      "techStack": ["JavaScript", "Chrome Extension API", "AI Integration"],
+      "featured": true,
+      "price": "免费"
+    }
+  ]
+}

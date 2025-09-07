@@ -7,14 +7,18 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Download } from "lucide-react";
 import type { App } from "@/types";
+import { usePathname } from 'next/navigation';
 
 interface AppCardProps {
   app: App;
 }
 
 export function AppCard({ app }: AppCardProps) {
+  const pathname = usePathname();
+  const lang = pathname.split('/')[1] || 'zh';
+  
   return (
-    <Link href={`/apps/${app.slug}`} className="block">
+    <Link href={`/${lang}/apps/${app.slug}`} className="block">
       <Card className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
         <div className="relative h-48 w-full">
           <Image

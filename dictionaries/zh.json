@@ -1,0 +1,76 @@
+{
+  "navigation": {
+    "home": "首页",
+    "apps": "应用",
+    "about": "关于"
+  },
+  "common": {
+    "viewAll": "查看所有应用",
+    "learnMore": "了解更多",
+    "sendEmail": "发送邮件",
+    "download": "下载",
+    "demo": "演示",
+    "version": "版本",
+    "price": "价格",
+    "free": "免费",
+    "users": "用户",
+    "rating": "评分",
+    "features": "功能特性",
+    "techStack": "技术栈",
+    "platform": "平台",
+    "category": "分类",
+    "tags": "标签",
+    "releaseDate": "发布日期",
+    "lastUpdate": "最后更新",
+    "allRightsReserved": "版权所有"
+  },
+  "home": {
+    "title": "个人作品集 - 展示我的应用作品",
+    "description": "一个展示我的APP作品的网站，包括桌面应用、Web应用等。",
+    "moreApps": "更多应用",
+    "moreAppsDescription": "探索我开发的其他应用，每一个都致力于提升你的数字体验。",
+    "aboutMe": "关于我",
+    "aboutMeDescription": "我是一名独立开发者，专注于创建实用、美观的应用程序。我相信技术应该让生活更简单、更高效。每一个应用都是我对完美用户体验的追求。"
+  },
+  "apps": {
+    "title": "我的应用",
+    "description": "这里展示了我开发的所有应用，每一个都经过精心设计和开发。"
+  },
+  "about": {
+    "title": "关于我",
+    "description": "了解更多关于我的背景、技能和开发理念",
+    "aboutMeTitle": "关于我",
+    "aboutMeContent1": "我是一名热爱技术的独立开发者，专注于创建实用、美观的应用程序。我相信技术应该让生活更简单、更高效，每一个应用都是我对完美用户体验的追求。",
+    "aboutMeContent2": "作为产品经理，我深入理解用户需求，善于将复杂的问题转化为简洁的解决方案。同时，我也积极拥抱AI时代，熟练运用各种AI工具来提升开发效率和产品质量。",
+    "philosophy": "开发理念",
+    "philosophyItems": [
+      "用户体验至上，每个细节都要精雕细琢",
+      "简洁而强大，避免不必要的复杂性",
+      "持续学习，拥抱新技术和新工具",
+      "开源精神，分享知识和经验"
+    ],
+    "techStackTitle": "技术栈与工具",
+    "frontend": "前端开发",
+    "desktop": "桌面开发",
+    "aiTools": "AI工具",
+    "contactMe": "联系我",
+    "contactDescription": "如果你对我的作品感兴趣，或者有任何合作想法，欢迎随时联系我！"
+  },
+  "footer": {
+    "title": "大吉的个人作品集",
+    "description": "展示我的应用作品，分享技术心得。",
+    "quickLinks": "快速链接",
+    "contact": "联系方式",
+    "email": "邮箱"
+  },
+  "header": {
+    "title": "大吉的个人作品集",
+    "switchLanguage": "切换语言"
+  },
+  "profile": {
+    "name": "大吉",
+    "title": "独立开发者 / 产品经理",
+    "location": "上海",
+    "skills": ["产品经理", "各种AI工具使用"]
+  }
+}
