@@ -22,22 +22,38 @@ npm run start
 npm run lint
 ```
 
+## Internationalization (i18n)
+
+The project supports bilingual content (Chinese/English) with the following structure:
+- **Default locale**: Chinese (`zh`)
+- **Supported locales**: Chinese (`zh`), English (`en`)
+- **URL structure**: `/[lang]/` for localized routes
+- **Configuration**: Defined in `next.config.ts` with `i18n` object
+
 ## Project Structure
 
 ### Core Directories
 - `app/` - Next.js App Router pages and layouts
+  - `app/[lang]/` - Localized routes with i18n support
+  - `app/apps/` - Legacy non-localized app routes
 - `components/` - React components organized by purpose
+  - `components/ui/` - shadcn/ui base components
+  - `components/layout/` - Header, footer, navigation
+  - `components/app/` - App-specific components (cards, details, etc.)
+  - `components/common/` - Shared utility components
 - `data/` - JSON and MDX files for content management
+  - `data/apps/` - App metadata and MDX content files
 - `lib/` - Utility functions and helpers
 - `public/` - Static assets (images, icons, etc.)
-- `config/` - Configuration files
 - `types/` - TypeScript type definitions
 
 ### Key Architecture Patterns
 - **Content Management**: Uses MDX files in `data/apps/` for app details with JSON index
-- **Styling**: Tailwind CSS with shadcn/ui component system
-- **Routing**: Next.js App Router with dynamic routes for app details (`/apps/[slug]`)
+- **Styling**: Tailwind CSS with shadcn/ui component system and CSS custom properties
+- **Routing**: Next.js App Router with dynamic routes for app details (`/apps/[slug]` and `/[lang]/apps/[slug]`)
 - **Data Fetching**: Static generation with local JSON/MDX files
+- **Internationalization**: Dynamic locale-based routing with metadata generation
+- **Component Architecture**: Client components with `use client` directive where needed
 
 ## Content Management
 
@@ -87,9 +103,11 @@ Apps in `data/apps/index.json` follow this structure:
 - Mobile menu component
 
 ### App Components (`components/app/`)
-- `app-card.tsx` - Individual app display cards
+- `app-card.tsx` - Individual app display cards with language-aware routing
 - `app-detail.tsx` - Detailed app view
 - `app-grid.tsx` - Grid layout for apps
+- `featured-app.tsx` - Featured app showcase
+- `featured-carousel.tsx` - Carousel for featured apps
 
 ### Common Components (`components/common/`)
 - Shared utilities and components
@@ -97,26 +115,32 @@ Apps in `data/apps/index.json` follow this structure:
 ## Technology Stack
 
 - **Framework**: Next.js 15 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS + shadcn/ui
-- **Content**: MDX with frontmatter
-- **Deployment**: Cloudflare Pages
+- **Language**: TypeScript with strict mode
+- **Styling**: Tailwind CSS + shadcn/ui with CSS custom properties
+- **Content**: MDX with frontmatter and gray-matter parsing
+- **Images**: Next.js Image component with optimization
+- **Icons**: Lucide React and React Icons
+- **Deployment**: Cloudflare Pages with static site generation
 - **Package Manager**: npm
 
 ## Configuration Files
 
-- `next.config.ts` - Next.js configuration
-- `tailwind.config.ts` - Tailwind CSS with custom theme
-- `eslint.config.mjs` - ESLint configuration extending Next.js rules
+- `next.config.ts` - Next.js configuration with i18n settings
+- `tailwind.config.ts` - Tailwind CSS with custom theme and shadcn/ui tokens
+- `eslint.config.mjs` - ESLint configuration extending Next.js rules using flat config
 - `tsconfig.json` - TypeScript strict mode configuration
+- `postcss.config.js` - PostCSS configuration for Tailwind CSS
 
 ## Development Notes
 
-- Uses MDX for rich content in app descriptions
-- Implements responsive design with Tailwind CSS
-- No external database - content managed through local files
+- Uses MDX for rich content in app descriptions with gray-matter frontmatter parsing
+- Implements responsive design with Tailwind CSS and CSS custom properties
+- No external database - content managed through local JSON and MDX files
 - SEO optimized with proper metadata and Open Graph tags
 - Images optimized through Next.js Image component
+- Bilingual support with dynamic locale-based routing
+- Client components use `use client` directive for interactivity
+- Static site generation for optimal performance
 
 ## Build and Deployment
 
