@@ -28,9 +28,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: Locale };
+  params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
-  const dict = metadataDict[params.lang] || metadataDict.zh;
+  const { lang } = await params;
+  const dict = metadataDict[lang] || metadataDict.zh;
   
   return {
     title: dict.title,
@@ -38,29 +39,26 @@ export async function generateMetadata({
   };
 }
 
-export default function LangLayout({
+export default async function LangLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: Locale };
+  params: Promise<{ lang: Locale }>;
 }) {
+  const { lang } = await params;
   // 验证语言参数
-  if (!locales.includes(params.lang)) {
+  if (!locales.includes(lang)) {
     notFound();
   }
 
   return (
-    <html lang={params.lang}>
-      <body className={inter.className} suppressHydrationWarning={true}>
-        <div className="min-h-screen flex flex-col">
-          <Header lang={params.lang} />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer lang={params.lang} />
-        </div>
-      </body>
-    </html>
+    <div className="min-h-screen flex flex-col">
+      <Header lang={lang} />
+      <main className="flex-1">
+        {children}
+      </main>
+      <Footer lang={lang} />
+    </div>
   );
 }

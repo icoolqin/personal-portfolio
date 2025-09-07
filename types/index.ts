@@ -15,6 +15,7 @@ export interface App {
     demo?: string;
     chrome?: string;
     edge?: string;
+    github?: string;
   };
   version: string;
   releaseDate: string;

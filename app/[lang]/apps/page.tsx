@@ -1,6 +1,7 @@
 'use client';
 
 import { AppCard } from "@/components/app/app-card";
+import { use } from 'react';
 
 type Locale = 'zh' | 'en';
 
@@ -149,9 +150,10 @@ const appsData = {
   }
 };
 
-export default function AppsPage({ params }: { params: { lang: Locale } }) {
-  const dict = dictionaries[params.lang] || dictionaries.zh;
-  const apps = appsData[params.lang]?.apps || appsData.zh.apps;
+export default function AppsPage({ params }: { params: Promise<{ lang: Locale }> }) {
+  const resolvedParams = use(params);
+  const dict = dictionaries[resolvedParams.lang] || dictionaries.zh;
+  const apps = appsData[resolvedParams.lang]?.apps || appsData.zh.apps;
 
   return (
     <div className="container mx-auto px-4 py-12">

@@ -5,7 +5,7 @@ import { FeaturedCarousel } from "@/components/app/featured-carousel";
 import { AppCard } from "@/components/app/app-card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, use } from 'react';
 
 type Locale = 'zh' | 'en';
 
@@ -166,9 +166,10 @@ const appsData = {
   }
 };
 
-export default function Home({ params }: { params: { lang: Locale } }) {
-  const dict = dictionaries[params.lang] || dictionaries.zh;
-  const apps = appsData[params.lang]?.apps || appsData.zh.apps;
+export default function Home({ params }: { params: Promise<{ lang: Locale }> }) {
+  const resolvedParams = use(params);
+  const dict = dictionaries[resolvedParams.lang] || dictionaries.zh;
+  const apps = appsData[resolvedParams.lang]?.apps || appsData.zh.apps;
   const featuredApps = apps.filter(app => app.featured);
   const otherApps = apps.filter(app => !app.featured).slice(0, 3);
 
@@ -197,7 +198,7 @@ export default function Home({ params }: { params: { lang: Locale } }) {
           
           <div className="text-center">
             <Button asChild size="lg">
-              <Link href={`/${params.lang}/apps`}>{dict.common.viewAll}</Link>
+              <Link href={`/${resolvedParams.lang}/apps`}>{dict.common.viewAll}</Link>
             </Button>
           </div>
         </section>
@@ -211,7 +212,7 @@ export default function Home({ params }: { params: { lang: Locale } }) {
             {dict.home.aboutMeDescription}
           </p>
           <Button asChild variant="outline" size="lg">
-            <Link href={`/${params.lang}/about`}>{dict.common.learnMore}</Link>
+            <Link href={`/${resolvedParams.lang}/about`}>{dict.common.learnMore}</Link>
           </Button>
         </div>
       </section>

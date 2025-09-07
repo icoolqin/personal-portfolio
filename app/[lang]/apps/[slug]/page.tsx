@@ -13,9 +13,9 @@ import path from "path";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 interface AppPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // 自定义 MDX 组件样式

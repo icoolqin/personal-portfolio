@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Mail, MapPin, Github, ExternalLink } from "lucide-react";
+import { use } from 'react';
 
 type Locale = 'zh' | 'en';
 
@@ -77,8 +78,9 @@ const profileData = {
   email: "icoolqin@gmail.com"
 };
 
-export default function AboutPage({ params }: { params: { lang: Locale } }) {
-  const dict = dictionaries[params.lang] || dictionaries.zh;
+export default function AboutPage({ params }: { params: Promise<{ lang: Locale }> }) {
+  const resolvedParams = use(params);
+  const dict = dictionaries[resolvedParams.lang] || dictionaries.zh;
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-4xl mx-auto">
