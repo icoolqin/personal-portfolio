@@ -9,13 +9,27 @@ import { ExternalLink, Download } from "lucide-react";
 import type { App } from "@/types";
 import { usePathname } from 'next/navigation';
 
+type Locale = 'zh' | 'en';
+
+const translations = {
+  zh: {
+    featured: '精选',
+    viewDetails: '查看详情'
+  },
+  en: {
+    featured: 'Featured',
+    viewDetails: 'View Details'
+  }
+};
+
 interface AppCardProps {
   app: App;
 }
 
 export function AppCard({ app }: AppCardProps) {
   const pathname = usePathname();
-  const lang = pathname.split('/')[1] || 'zh';
+  const lang = (pathname.split('/')[1] as Locale) || 'zh';
+  const t = translations[lang] || translations.zh;
   
   return (
     <Link href={`/${lang}/apps/${app.slug}`} className="block">
@@ -29,7 +43,7 @@ export function AppCard({ app }: AppCardProps) {
           />
           {app.featured && (
             <Badge className="absolute top-2 right-2" variant="secondary">
-              精选
+              {t.featured}
             </Badge>
           )}
         </div>
@@ -68,7 +82,7 @@ export function AppCard({ app }: AppCardProps) {
           <div className="flex gap-2">
             <Button asChild size="sm" className="flex-1">
               <span className="pointer-events-none">
-                查看详情
+                {t.viewDetails}
               </span>
             </Button>
             

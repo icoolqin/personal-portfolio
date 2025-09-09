@@ -6,17 +6,59 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Download, ExternalLink, Github, Star, Users, Calendar, Tag } from "lucide-react";
 import { FaChrome, FaEdge } from "react-icons/fa6";
-import appsData from "@/data/apps/index.json";
 import type { App } from "@/types";
 import fs from "fs";
 import path from "path";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
+type Locale = 'zh' | 'en';
+
 interface AppPageProps {
   params: Promise<{
     slug: string;
+    lang: Locale;
   }>;
 }
+
+// 多语言翻译对象
+const translations = {
+  zh: {
+    buyNow: '立即购买',
+    chromeStore: 'Chrome 网上应用店',
+    edgeStore: 'Microsoft Edge 加载项',
+    downloadApp: '下载应用',
+    onlineDemo: '在线演示',
+    sourceCode: '源代码',
+    screenshots: '应用截图',
+    backToApps: '← 返回应用列表',
+    backToHome: '返回首页',
+    statistics: '统计信息',
+    techStack: '技术栈',
+    tags: '标签',
+    users: '用户',
+    rating: '评分',
+    releasedOn: '发布于',
+    updatedOn: '更新于'
+  },
+  en: {
+    buyNow: 'Buy Now',
+    chromeStore: 'Chrome Web Store',
+    edgeStore: 'Microsoft Edge Add-ons',
+    downloadApp: 'Download App',
+    onlineDemo: 'Online Demo',
+    sourceCode: 'Source Code',
+    screenshots: 'Screenshots',
+    backToApps: '← Back to Apps',
+    backToHome: 'Back to Home',
+    statistics: 'Statistics',
+    techStack: 'Tech Stack',
+    tags: 'Tags',
+    users: 'users',
+    rating: 'rating',
+    releasedOn: 'Released on',
+    updatedOn: 'Updated on'
+  }
+};
 
 // 自定义 MDX 组件样式
 const mdxComponents = {
@@ -59,7 +101,22 @@ function preprocessMDX(content: string): string {
 }
 
 export default async function AppPage({ params }: AppPageProps) {
-  const { slug } = await params;
+  const { slug, lang } = await params;
+  const t = translations[lang];
+  
+  // 根据语言加载对应的数据文件
+  let appsData;
+  try {
+    const dataPath = path.join(process.cwd(), 'data', 'apps', `index-${lang}.json`);
+    const dataContent = fs.readFileSync(dataPath, 'utf-8');
+    appsData = JSON.parse(dataContent);
+  } catch (error) {
+    // 如果找不到对应语言的文件，回退到中文
+    const fallbackPath = path.join(process.cwd(), 'data', 'apps', 'index-zh.json');
+    const fallbackContent = fs.readFileSync(fallbackPath, 'utf-8');
+    appsData = JSON.parse(fallbackContent);
+  }
+  
   const apps = appsData.apps as App[];
   const app = apps.find(a => a.slug === slug);
 
@@ -67,12 +124,19 @@ export default async function AppPage({ params }: AppPageProps) {
     notFound();
   }
 
-  // 读取 MDX 内容
+  // 读取 MDX 内容 - 优先读取对应语言的文件
   let mdxContent = null;
   let hasMdxContent = false;
   
   try {
-    const mdxPath = path.join(process.cwd(), 'data', 'apps', `${slug}.mdx`);
+    // 首先尝试读取对应语言的 MDX 文件
+    let mdxPath = path.join(process.cwd(), 'data', 'apps', `${slug}-${lang}.mdx`);
+    
+    // 如果对应语言的文件不存在，回退到通用文件
+    if (!fs.existsSync(mdxPath)) {
+      mdxPath = path.join(process.cwd(), 'data', 'apps', `${slug}.mdx`);
+    }
+    
     if (fs.existsSync(mdxPath)) {
       const rawContent = fs.readFileSync(mdxPath, 'utf-8');
       const processedContent = preprocessMDX(rawContent);
@@ -137,7 +201,7 @@ export default async function AppPage({ params }: AppPageProps) {
             <Button asChild size="lg" className="shadow-md hover:shadow-lg transition-shadow">
               <a href={app.links.download} target="_blank" rel="noopener noreferrer">
                 <Download className="w-5 h-5 mr-2" />
-                立即购买
+                {t.buyNow}
               </a>
             </Button>
           )}
@@ -153,7 +217,7 @@ export default async function AppPage({ params }: AppPageProps) {
                 >
                   <a href={(app.links as any).chrome} target="_blank" rel="noopener noreferrer">
                     <FaChrome className="w-5 h-5 mr-2" />
-                    Chrome 网上应用店
+                    {t.chromeStore}
                   </a>
                 </Button>
               )}
@@ -166,7 +230,7 @@ export default async function AppPage({ params }: AppPageProps) {
                 >
                   <a href={(app.links as any).edge} target="_blank" rel="noopener noreferrer">
                     <FaEdge className="w-5 h-5 mr-2" />
-                    Microsoft Edge 加载项
+                    {t.edgeStore}
                   </a>
                 </Button>
               )}
@@ -178,7 +242,7 @@ export default async function AppPage({ params }: AppPageProps) {
             <Button asChild size="lg" className="shadow-md hover:shadow-lg transition-shadow">
               <a href={app.links.download} target="_blank" rel="noopener noreferrer">
                 <Download className="w-5 h-5 mr-2" />
-                下载应用
+                {t.downloadApp}
               </a>
             </Button>
           )}
@@ -188,7 +252,7 @@ export default async function AppPage({ params }: AppPageProps) {
             <Button asChild variant="outline" size="lg">
               <a href={app.links.demo} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="w-5 h-5 mr-2" />
-                在线演示
+                {t.onlineDemo}
               </a>
             </Button>
           )}
@@ -197,7 +261,7 @@ export default async function AppPage({ params }: AppPageProps) {
             <Button asChild variant="outline" size="lg">
               <a href={app.links.github} target="_blank" rel="noopener noreferrer">
                 <Github className="w-5 h-5 mr-2" />
-                源代码
+                {t.sourceCode}
               </a>
             </Button>
           )}
@@ -211,7 +275,7 @@ export default async function AppPage({ params }: AppPageProps) {
           {/* 应用截图 */}
           {app.screenshots && app.screenshots.length > 0 && (
             <section className="mb-12">
-              <h2 className="text-2xl font-bold mb-6">应用截图</h2>
+              <h2 className="text-2xl font-bold mb-6">{t.screenshots}</h2>
               <div className="grid grid-cols-1 gap-6">
                 {app.screenshots.map((screenshot, index) => (
                   <div key={index} className="relative w-full rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow bg-gray-50 dark:bg-gray-900">
@@ -278,29 +342,29 @@ export default async function AppPage({ params }: AppPageProps) {
             {app.stats && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">统计信息</CardTitle>
+                  <CardTitle className="text-lg">{t.statistics}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {app.stats.users && (
                     <div className="flex items-center gap-2">
                       <Users className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-sm">{app.stats.users.toLocaleString()} 用户</span>
+                      <span className="text-sm">{app.stats.users.toLocaleString()} {t.users}</span>
                     </div>
                   )}
                   {app.stats.rating && (
                     <div className="flex items-center gap-2">
                       <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                      <span className="text-sm">{app.stats.rating}/5 评分</span>
+                      <span className="text-sm">{app.stats.rating}/5 {t.rating}</span>
                     </div>
                   )}
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-sm">发布于 {app.releaseDate}</span>
+                    <span className="text-sm">{t.releasedOn} {app.releaseDate}</span>
                   </div>
                   {app.lastUpdateDate && (
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-sm">更新于 {app.lastUpdateDate}</span>
+                      <span className="text-sm">{t.updatedOn} {app.lastUpdateDate}</span>
                     </div>
                   )}
                 </CardContent>
@@ -310,7 +374,7 @@ export default async function AppPage({ params }: AppPageProps) {
             {app.techStack && app.techStack.length > 0 && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">技术栈</CardTitle>
+                  <CardTitle className="text-lg">{t.techStack}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
@@ -327,7 +391,7 @@ export default async function AppPage({ params }: AppPageProps) {
             {app.tags && app.tags.length > 0 && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">标签</CardTitle>
+                  <CardTitle className="text-lg">{t.tags}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
@@ -349,12 +413,12 @@ export default async function AppPage({ params }: AppPageProps) {
       <div className="flex justify-center gap-4 pt-8 border-t">
         <Button asChild variant="outline" size="lg">
           <Link href="/apps">
-            ← 返回应用列表
+            {t.backToApps}
           </Link>
         </Button>
         <Button asChild variant="ghost" size="lg">
           <Link href="/">
-            返回首页
+            {t.backToHome}
           </Link>
         </Button>
       </div>
