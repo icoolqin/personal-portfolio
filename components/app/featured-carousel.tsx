@@ -15,6 +15,30 @@ import {
   Play
 } from "lucide-react";
 import type { App } from "@/types";
+import { usePathname } from 'next/navigation';
+
+type Locale = 'zh' | 'en';
+
+const translations = {
+  zh: {
+    learnMore: '了解更多',
+    getApp: '立即获取',
+    getPlugin: '获取插件',
+    users: '用户',
+    rating: '评分',
+    featured: '精选应用',
+    free: '完全免费'
+  },
+  en: {
+    learnMore: 'Learn More',
+    getApp: 'Get App',
+    getPlugin: 'Get Plugin',
+    users: 'users',
+    rating: 'rating',
+    featured: 'Featured App',
+    free: 'Completely Free'
+  }
+};
 
 interface FeaturedCarouselProps {
   apps: App[];
@@ -25,6 +49,9 @@ export function FeaturedCarousel({
   apps, 
   autoPlayInterval = 5000 
 }: FeaturedCarouselProps) {
+  const pathname = usePathname();
+  const lang = (pathname.split('/')[1] as Locale) || 'zh';
+  const t = translations[lang] || translations.zh;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
@@ -130,7 +157,7 @@ export function FeaturedCarousel({
                 </div>
               </div>
               <div>
-                <Badge className="mb-2 animate-pulse">精选应用</Badge>
+                <Badge className="mb-2 animate-pulse">{t.featured}</Badge>
                 <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
                   {currentApp.name}
                 </h1>
@@ -182,13 +209,13 @@ export function FeaturedCarousel({
                 {currentApp.stats.users && (
                   <div className="flex items-center gap-1">
                     <Star className="w-4 h-4" />
-                    <span>{currentApp.stats.users.toLocaleString()} 用户</span>
+                    <span>{currentApp.stats.users.toLocaleString()} {t.users}</span>
                   </div>
                 )}
                 {currentApp.stats.rating && (
                   <div className="flex items-center gap-1">
                     <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    <span>{currentApp.stats.rating}/5 评分</span>
+                    <span>{currentApp.stats.rating}/5 {t.rating}</span>
                   </div>
                 )}
               </div>
@@ -197,8 +224,8 @@ export function FeaturedCarousel({
             {/* 操作按钮 */}
             <div className="flex gap-3">
             <Button asChild size="lg" className="shadow-lg hover:shadow-xl transition-shadow">
-                <Link href={`/apps/${currentApp.slug}`}>
-                了解更多
+                <Link href={`/${lang}/apps/${currentApp.slug}`}>
+                {t.learnMore}
                 </Link>
             </Button>
             
@@ -211,16 +238,16 @@ export function FeaturedCarousel({
                     rel="noopener noreferrer"
                 >
                     <Download className="w-4 h-4 mr-2" />
-                    立即获取
+                    {t.getApp}
                 </a>
                 </Button>
             )}
             
             {currentApp.slug === 'onesearch' && (
                 <Button asChild variant="outline" size="lg" className="shadow-md hover:shadow-lg transition-shadow">
-                <Link href={`/apps/${currentApp.slug}`}>
+                <Link href={`/${lang}/apps/${currentApp.slug}`}>
                     <Download className="w-4 h-4 mr-2" />
-                    获取插件
+                    {t.getPlugin}
                 </Link>
                 </Button>
             )}
@@ -234,7 +261,7 @@ export function FeaturedCarousel({
                 </span>
                 {currentApp.price === "免费" && (
                   <Badge variant="outline" className="bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400">
-                    完全免费
+                    {t.free}
                   </Badge>
                 )}
               </div>
