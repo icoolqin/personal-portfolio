@@ -412,12 +412,12 @@ export default async function AppPage({ params }: AppPageProps) {
       {/* 返回按钮 */}
       <div className="flex justify-center gap-4 pt-8 border-t">
         <Button asChild variant="outline" size="lg">
-          <Link href="/apps">
+          <Link href={`/${lang}/apps`}>
             {t.backToApps}
           </Link>
         </Button>
         <Button asChild variant="ghost" size="lg">
-          <Link href="/">
+          <Link href={`/${lang}`}>
             {t.backToHome}
           </Link>
         </Button>
