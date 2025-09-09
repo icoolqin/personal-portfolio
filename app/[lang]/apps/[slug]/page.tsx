@@ -91,11 +91,12 @@ function preprocessMDX(content: string): string {
     }
   }
   
-  // 修复可能的问题：将 "桌面1" 这样的文本改为 "桌面 1"
-  content = content.replace(/桌面(\d)/g, '桌面 $1');
-  
   // 确保列表项前有空行
   content = content.replace(/([^\n])\n(-|\*|\d+\.)/g, '$1\n\n$2');
+  
+  // 修复可能的JSX标签问题
+  content = content.replace(/<(\d+)/g, '<span>$1');
+  content = content.replace(/(\d+)>/g, '$1</span>');
   
   return content;
 }
