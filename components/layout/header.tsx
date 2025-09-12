@@ -58,7 +58,7 @@ function LanguageSwitcher({ currentLang }: { currentLang: Locale }) {
 }
 
 export function Header({ lang }: HeaderProps) {
-  const dict = dictionaries[lang] || dictionaries.zh;
+  const dict = dictionaries[lang] || dictionaries.en;
   
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

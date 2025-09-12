@@ -7,7 +7,7 @@ const appsData = {
 };
 
 export const getAppsData = async (locale: Locale) => {
-  const data = await (appsData[locale]?.() ?? appsData.zh());
+  const data = await (appsData[locale]?.() ?? appsData.en());
   return data.apps as App[];
 };
 

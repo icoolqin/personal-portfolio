@@ -25,7 +25,7 @@ npm run lint
 ## Internationalization (i18n)
 
 The project supports bilingual content (Chinese/English) with the following structure:
-- **Default locale**: Chinese (`zh`)
+- **Default locale**: English (`en`)
 - **Supported locales**: Chinese (`zh`), English (`en`)
 - **URL structure**: `/[lang]/` for localized routes
 - **Configuration**: Defined in `next.config.ts` with `i18n` object

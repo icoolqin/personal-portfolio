@@ -152,8 +152,8 @@ const appsData = {
 
 export default function AppsPage({ params }: { params: Promise<{ lang: Locale }> }) {
   const resolvedParams = use(params);
-  const dict = dictionaries[resolvedParams.lang] || dictionaries.zh;
-  const apps = appsData[resolvedParams.lang]?.apps || appsData.zh.apps;
+  const dict = dictionaries[resolvedParams.lang] || dictionaries.en;
+  const apps = appsData[resolvedParams.lang]?.apps || appsData.en.apps;
 
   return (
     <div className="container mx-auto px-4 py-12">

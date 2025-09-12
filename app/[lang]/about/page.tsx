@@ -80,7 +80,7 @@ const profileData = {
 
 export default function AboutPage({ params }: { params: Promise<{ lang: Locale }> }) {
   const resolvedParams = use(params);
-  const dict = dictionaries[resolvedParams.lang] || dictionaries.zh;
+  const dict = dictionaries[resolvedParams.lang] || dictionaries.en;
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-4xl mx-auto">

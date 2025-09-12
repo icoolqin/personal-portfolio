@@ -168,8 +168,8 @@ const appsData = {
 
 export default function Home({ params }: { params: Promise<{ lang: Locale }> }) {
   const resolvedParams = use(params);
-  const dict = dictionaries[resolvedParams.lang] || dictionaries.zh;
-  const apps = appsData[resolvedParams.lang]?.apps || appsData.zh.apps;
+  const dict = dictionaries[resolvedParams.lang] || dictionaries.en;
+  const apps = appsData[resolvedParams.lang]?.apps || appsData.en.apps;
   const featuredApps = apps.filter(app => app.featured);
   const otherApps = apps.filter(app => !app.featured).slice(0, 3);
 

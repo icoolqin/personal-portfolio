@@ -34,7 +34,7 @@ const dictionaries = {
 };
 
 export function Footer({ lang }: FooterProps) {
-  const dict = dictionaries[lang] || dictionaries.zh;
+  const dict = dictionaries[lang] || dictionaries.en;
   
   return (
     <footer className="border-t bg-background">

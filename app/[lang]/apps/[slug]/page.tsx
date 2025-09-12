@@ -112,8 +112,8 @@ export default async function AppPage({ params }: AppPageProps) {
     const dataContent = fs.readFileSync(dataPath, 'utf-8');
     appsData = JSON.parse(dataContent);
   } catch (error) {
-    // 如果找不到对应语言的文件，回退到中文
-    const fallbackPath = path.join(process.cwd(), 'data', 'apps', 'index-zh.json');
+    // 如果找不到对应语言的文件，回退到英文
+    const fallbackPath = path.join(process.cwd(), 'data', 'apps', 'index-en.json');
     const fallbackContent = fs.readFileSync(fallbackPath, 'utf-8');
     appsData = JSON.parse(fallbackContent);
   }

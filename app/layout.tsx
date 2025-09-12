@@ -18,8 +18,8 @@ export default async function RootLayout({
   const headersList = await headers();
   const pathname = headersList.get('x-pathname') || '';
   
-  // 从路径中提取语言，默认为中文
-  const lang = pathname.startsWith('/en') ? 'en' : 'zh';
+  // 从路径中提取语言，默认为英文
+  const lang = pathname.startsWith('/zh') ? 'zh' : 'en';
   
   return (
     <html lang={lang}>

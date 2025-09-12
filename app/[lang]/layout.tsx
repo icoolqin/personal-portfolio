@@ -31,7 +31,7 @@ export async function generateMetadata({
   params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = metadataDict[lang] || metadataDict.zh;
+  const dict = metadataDict[lang] || metadataDict.en;
   
   return {
     title: dict.title,

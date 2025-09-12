@@ -8,7 +8,7 @@ export default nextConfig;
 
 // 支持的语言列表
 export const i18n = {
-  defaultLocale: 'zh',
+  defaultLocale: 'en',
   locales: ['zh', 'en'],
 } as const;
 
