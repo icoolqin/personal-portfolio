@@ -85,29 +85,6 @@ export function AppCard({ app }: AppCardProps) {
                 {t.viewDetails}
               </span>
             </Button>
-            
-            {/* 根据不同应用显示不同的下载按钮 */}
-            {app.slug === 'desktop-switcher' && app.links.download && (
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  window.open(app.links.download, '_blank', 'noopener,noreferrer');
-                }}
-              >
-                <Download className="w-4 h-4" />
-              </Button>
-            )}
-            
-            {app.slug === 'onesearch' && (
-              <Button asChild variant="outline" size="sm">
-                <span className="pointer-events-none">
-                  <Download className="w-4 h-4" />
-                </span>
-              </Button>
-            )}
           </div>
         </CardContent>
       </Card>

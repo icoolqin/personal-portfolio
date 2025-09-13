@@ -24,8 +24,8 @@ interface AppPageProps {
 const translations = {
   zh: {
     buyNow: '立即购买',
-    chromeStore: 'Chrome 网上应用店',
-    edgeStore: 'Microsoft Edge 加载项',
+    chromeStore: 'Chrome 插件市场',
+    edgeStore: 'Edge 插件市场',
     downloadApp: '下载应用',
     onlineDemo: '在线演示',
     sourceCode: '源代码',
@@ -38,7 +38,8 @@ const translations = {
     users: '用户',
     rating: '评分',
     releasedOn: '发布于',
-    updatedOn: '更新于'
+    updatedOn: '更新于',
+    scanToTry: '请扫描截图中的二维码'
   },
   en: {
     buyNow: 'Buy Now',
@@ -56,7 +57,8 @@ const translations = {
     users: 'users',
     rating: 'rating',
     releasedOn: 'Released on',
-    updatedOn: 'Updated on'
+    updatedOn: 'Updated on',
+    scanToTry: 'Please scan the QR code in the screenshot'
   }
 };
 
@@ -94,9 +96,9 @@ function preprocessMDX(content: string): string {
   // 确保列表项前有空行
   content = content.replace(/([^\n])\n(-|\*|\d+\.)/g, '$1\n\n$2');
   
-  // 修复可能的JSX标签问题
-  content = content.replace(/<(\d+)/g, '<span>$1');
-  content = content.replace(/(\d+)>/g, '$1</span>');
+  // 修复小于号引发的 MDX 误解析，例如 "**<100ms**"
+  // 将以数字开头的尖括号转义为文本
+  content = content.replace(/<(?=\d)/g, '&lt;');
   
   return content;
 }
@@ -197,6 +199,12 @@ export default async function AppPage({ params }: AppPageProps) {
         
         {/* 操作按钮 */}
         <div className="flex flex-wrap gap-3">
+          {/* 微信小程序：扫码体验提示 */}
+          {(app.category === '微信小程序' || app.platform.includes('微信小程序') || app.platform.includes('WeChat Mini Program')) && (
+            <Button disabled size="lg" className="shadow-none">
+              {t.scanToTry}
+            </Button>
+          )}
           {/* DesktopSwitcher 的下载按钮 */}
           {app.slug === 'desktop-switcher' && app.links.download && (
             <Button asChild size="lg" className="shadow-md hover:shadow-lg transition-shadow">
@@ -207,8 +215,8 @@ export default async function AppPage({ params }: AppPageProps) {
             </Button>
           )}
           
-          {/* OneSearch 的两个商店按钮 */}
-          {app.slug === 'onesearch' && (
+          {/* OneSearch / OmniWord 的两个商店按钮 */}
+          {(app.slug === 'onesearch' || app.slug === 'omniword') && (
             <>
               {(app.links as any).chrome && (
                 <Button 
@@ -238,8 +246,8 @@ export default async function AppPage({ params }: AppPageProps) {
             </>
           )}
           
-          {/* 通用下载按钮 */}
-          {app.slug !== 'desktop-switcher' && app.slug !== 'onesearch' && app.links.download && (
+          {/* 通用下载按钮（不适用于 OneSearch / OmniWord） */}
+          {app.slug !== 'desktop-switcher' && app.slug !== 'onesearch' && app.slug !== 'omniword' && app.links.download && (
             <Button asChild size="lg" className="shadow-md hover:shadow-lg transition-shadow">
               <a href={app.links.download} target="_blank" rel="noopener noreferrer">
                 <Download className="w-5 h-5 mr-2" />

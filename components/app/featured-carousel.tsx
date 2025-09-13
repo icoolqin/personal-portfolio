@@ -243,7 +243,7 @@ export function FeaturedCarousel({
                 </Button>
             )}
             
-            {currentApp.slug === 'onesearch' && (
+            {(currentApp.slug === 'onesearch' || currentApp.slug === 'omniword') && (
                 <Button asChild variant="outline" size="lg" className="shadow-md hover:shadow-lg transition-shadow">
                 <Link href={`/${lang}/apps/${currentApp.slug}`}>
                     <Download className="w-4 h-4 mr-2" />

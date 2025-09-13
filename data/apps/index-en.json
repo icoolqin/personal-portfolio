@@ -35,6 +35,38 @@
       "price": "$2.99"
     },
     {
+      "id": "ai-garden-party",
+      "slug": "ai-garden-party",
+      "name": "AI Garden Party - AI-hosted Guessing Game",
+      "shortDescription": "A WeChat mini-game where AI hosts the guessing",
+      "fullDescription": "A fun guessing mini-game on WeChat, featuring an AI as the game host. You’ll progress through levels by interacting with the AI.\nThe game offers a wide variety of topics across culture and geography from ancient to modern, and you can also play with friends to compete on leaderboards.\nCompletely free—give it a try!",
+      "category": "WeChat Mini Program",
+      "platform": ["WeChat Mini Program"],
+      "tags": ["AI", "Guessing", "Interactive", "Mini Game"],
+      "icon": "/images/GGame.png",
+      "banner": "/images/GGamePoster.png",
+      "screenshots": ["/images/GGamePoster.png"],
+      "links": {
+        "demo": "#"
+      },
+      "version": "1.0.0",
+      "releaseDate": "2024-09-01",
+      "lastUpdateDate": "2024-09-01",
+      "stats": {
+        "users": 0,
+        "rating": 0
+      },
+      "features": [
+        "AI-hosted interactive levels",
+        "Rich topics across culture & geography",
+        "Play with friends and leaderboards",
+        "Free to play — scan and go"
+      ],
+      "techStack": ["WeChat Mini Program", "AI"],
+      "featured": false,
+      "price": "Free"
+    },
+    {
       "id": "onesearch",
       "slug": "onesearch",
       "name": "OneSearch",
@@ -67,6 +99,42 @@
         "Drag and drop sorting"
       ],
       "techStack": ["JavaScript", "Chrome Extension API", "AI Integration"],
+      "featured": true,
+      "price": "Free"
+    },
+    {
+      "id": "omniword",
+      "slug": "omniword",
+      "name": "OmniWord",
+      "shortDescription": "Selection translation with AI word storytelling",
+      "fullDescription": "Selection translation + popup dictionary with AI etymology/affix/context insights for deeper understanding.",
+      "category": "Browser Extension",
+      "platform": ["Chrome", "Microsoft Edge"],
+      "tags": ["Selection Translation", "AI Translation", "Etymology", "Browser Extension", "Productivity"],
+      "icon": "/images/OmniWord.png",
+      "banner": "/images/OmniWordPoster.png",
+      "screenshots": ["/images/OmniWordPoster.png"],
+      "links": {
+        "download": "#",
+        "chrome": "https://chromewebstore.google.com/detail/iljgnmpnjfimmjfielhfecogghncdgjb?utm_source=item-share-cb",
+        "edge": "https://microsoftedge.microsoft.com/addons/detail/omniword-%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91/lpfaifjlmdbknabibdbglanhfdjnljgo"
+      },
+      "version": "1.0.0",
+      "releaseDate": "2024-01-01",
+      "lastUpdateDate": "2024-01-01",
+      "stats": {
+        "users": 2000,
+        "rating": 4.8
+      },
+      "features": [
+        "In-page selection instant translation",
+        "Popup dictionary search",
+        "AI deep dives (etymology/affixes/cultural context)",
+        "Support multiple AI providers",
+        "Configurable own API keys",
+        "Draggable translation window with position memory"
+      ],
+      "techStack": ["TypeScript", "Chrome Extension API", "AI Integrations"],
       "featured": true,
       "price": "Free"
     }

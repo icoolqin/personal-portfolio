@@ -35,6 +35,38 @@
       "price": "$2.99"
     },
     {
+      "id": "ai-garden-party",
+      "slug": "ai-garden-party",
+      "name": "AI园游会 - AI作主持人的猜图游戏",
+      "shortDescription": "AI作主持人的微信猜图小游戏",
+      "fullDescription": "一款微信平台使用的猜图小游戏，特色就是：AI作为游戏的主持人，你将在与AI的互动中完成关卡；\n游戏设置了种类丰富的关卡，包含人文地理古今中外的题目；同时你也可以与好友一起玩，冲击好友排行榜；\n游戏完全免费，快来试试吧",
+      "category": "微信小程序",
+      "platform": ["微信小程序"],
+      "tags": ["AI", "猜图", "互动", "小游戏"],
+      "icon": "/images/GGame.png",
+      "banner": "/images/GGamePoster.png",
+      "screenshots": ["/images/GGamePoster.png"],
+      "links": {
+        "demo": "#"
+      },
+      "version": "1.0.0",
+      "releaseDate": "2024-09-01",
+      "lastUpdateDate": "2024-09-01",
+      "stats": {
+        "users": 0,
+        "rating": 0
+      },
+      "features": [
+        "AI 主持的互动式关卡",
+        "丰富的人文地理题库",
+        "支持与好友同玩及排行榜",
+        "完全免费，扫码即玩"
+      ],
+      "techStack": ["微信小程序", "AI"],
+      "featured": false,
+      "price": "免费"
+    },
+    {
       "id": "onesearch",
       "slug": "onesearch",
       "name": "OneSearch",
@@ -67,6 +99,42 @@
         "拖拽排序功能"
       ],
       "techStack": ["JavaScript", "Chrome Extension API", "AI Integration"],
+      "featured": true,
+      "price": "免费"
+    },
+    {
+      "id": "omniword",
+      "slug": "omniword",
+      "name": "OmniWord",
+      "shortDescription": "划词翻译与 AI 说文解字",
+      "fullDescription": "网页划词与弹窗查词，AI 词源/词缀/语境讲解，理解更深入。",
+      "category": "浏览器插件",
+      "platform": ["Chrome", "Microsoft Edge"],
+      "tags": ["划词翻译", "AI 翻译", "词源", "浏览器扩展", "生产力"],
+      "icon": "/images/OmniWord.png",
+      "banner": "/images/OmniWordPoster.png",
+      "screenshots": ["/images/OmniWordPoster.png"],
+      "links": {
+        "download": "#",
+        "chrome": "https://chromewebstore.google.com/detail/iljgnmpnjfimmjfielhfecogghncdgjb?utm_source=item-share-cb",
+        "edge": "https://microsoftedge.microsoft.com/addons/detail/omniword-%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91/lpfaifjlmdbknabibdbglanhfdjnljgo"
+      },
+      "version": "1.0.0",
+      "releaseDate": "2024-01-01",
+      "lastUpdateDate": "2024-01-01",
+      "stats": {
+        "users": 2000,
+        "rating": 4.8
+      },
+      "features": [
+        "网页划词即时翻译",
+        "弹窗查词",
+        "AI 深度讲解（词源/词缀/文化语境）",
+        "支持多种 AI 服务商",
+        "可自定义 API Key",
+        "可拖动且可记忆位置的翻译窗口"
+      ],
+      "techStack": ["TypeScript", "Chrome Extension API", "AI Integrations"],
       "featured": true,
       "price": "免费"
     }

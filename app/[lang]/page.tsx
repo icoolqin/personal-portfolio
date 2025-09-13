@@ -113,6 +113,31 @@ const appsData = {
         techStack: ["JavaScript"],
         featured: true,
         price: "免费"
+      },
+      {
+        id: "omniword",
+        slug: "omniword",
+        name: "OmniWord",
+        shortDescription: "划词翻译与 AI 说文解字",
+        fullDescription: "网页划词与弹窗查词，AI 词源/词缀/语境讲解，理解更深入。",
+        category: "浏览器插件",
+        platform: ["Chrome", "Microsoft Edge"],
+        tags: ["划词翻译", "AI 翻译"],
+        icon: "/images/OmniWord.png",
+        banner: "/images/OmniWordPoster.png",
+        screenshots: ["/images/OmniWordPoster.png"],
+        links: { 
+          chrome: "https://chromewebstore.google.com/detail/iljgnmpnjfimmjfielhfecogghncdgjb?utm_source=item-share-cb",
+          edge: "https://microsoftedge.microsoft.com/addons/detail/omniword-%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91/lpfaifjlmdbknabibdbglanhfdjnljgo"
+        },
+        version: "1.0.0",
+        releaseDate: "2024-01-01",
+        lastUpdateDate: "2024-01-01",
+        stats: { users: 2000, rating: 4.8 },
+        features: ["划词即译", "AI 深度讲解"],
+        techStack: ["TypeScript"],
+        featured: true,
+        price: "免费"
       }
     ]
   },
@@ -159,6 +184,31 @@ const appsData = {
         stats: { users: 5000, rating: 4.9 },
         features: ["Lightning-fast search"],
         techStack: ["JavaScript"],
+        featured: true,
+        price: "Free"
+      },
+      {
+        id: "omniword",
+        slug: "omniword",
+        name: "OmniWord",
+        shortDescription: "Selection translation with AI word storytelling",
+        fullDescription: "Selection translation + popup dictionary with AI etymology/affix/context insights for deeper understanding.",
+        category: "Browser Extension",
+        platform: ["Chrome", "Microsoft Edge"],
+        tags: ["Selection Translation", "AI Translation"],
+        icon: "/images/OmniWord.png",
+        banner: "/images/OmniWordPoster.png",
+        screenshots: ["/images/OmniWordPoster.png"],
+        links: { 
+          chrome: "https://chromewebstore.google.com/detail/iljgnmpnjfimmjfielhfecogghncdgjb?utm_source=item-share-cb",
+          edge: "https://microsoftedge.microsoft.com/addons/detail/omniword-%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91/lpfaifjlmdbknabibdbglanhfdjnljgo"
+        },
+        version: "1.0.0",
+        releaseDate: "2024-01-01",
+        lastUpdateDate: "2024-01-01",
+        stats: { users: 2000, rating: 4.8 },
+        features: ["Instant selection translation", "AI deep dives"],
+        techStack: ["TypeScript"],
         featured: true,
         price: "Free"
       }
