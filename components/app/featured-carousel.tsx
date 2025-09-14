@@ -293,17 +293,17 @@ export function FeaturedCarousel({
           <>
             <button
                 onClick={goToPrevious}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full p-2 shadow-lg hover:shadow-xl transition-all hover:scale-110 text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-700"
+                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-full p-3 sm:p-2 shadow-xl hover:shadow-2xl transition-all hover:scale-110 text-gray-800 dark:text-gray-100 hover:bg-white dark:hover:bg-gray-700 border border-gray-200/50 dark:border-gray-600/50"
                 aria-label="上一个应用"
                 >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <button
                 onClick={goToNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full p-2 shadow-lg hover:shadow-xl transition-all hover:scale-110 text-gray-700 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-700"
+                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-full p-3 sm:p-2 shadow-xl hover:shadow-2xl transition-all hover:scale-110 text-gray-800 dark:text-gray-100 hover:bg-white dark:hover:bg-gray-700 border border-gray-200/50 dark:border-gray-600/50"
                 aria-label="下一个应用"
                 >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </>
         )}

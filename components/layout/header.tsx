@@ -13,11 +13,17 @@ interface HeaderProps {
 
 const dictionaries = {
   zh: {
-    header: { title: "大吉的个人作品集" },
+    header: {
+      title: "大吉的个人作品集",
+      titleShort: "大吉作品集"
+    },
     navigation: { home: "首页", apps: "应用", about: "关于" }
   },
   en: {
-    header: { title: "Daji's Personal Portfolio" },
+    header: {
+      title: "Daji's Personal Portfolio",
+      titleShort: "Daji's Portfolio"
+    },
     navigation: { home: "Home", apps: "Apps", about: "About" }
   }
 };
@@ -53,32 +59,57 @@ function LanguageSwitcher({ currentLang }: { currentLang: Locale }) {
 
 export function Header({ lang }: HeaderProps) {
   const dict = dictionaries[lang] || dictionaries.en;
-  
+  const pathname = usePathname();
+
+  // 判断当前页面是否为指定路径
+  const isActivePage = (path: string) => {
+    if (path === `/${lang}`) {
+      // 首页：精确匹配或只有语言路径
+      return pathname === `/${lang}` || pathname === `/${lang}/`;
+    }
+    // 其他页面：检查路径是否以指定路径开头
+    return pathname.startsWith(path);
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-14 items-center px-4">
         <div className="mr-4 flex">
           <Link href={`/${lang}`} className="mr-6 flex items-center space-x-2">
-            <span className="font-bold text-xl">{dict.header.title}</span>
+            {/* 桌面端显示完整标题，移动端显示简化标题 */}
+            <span className="font-bold text-xl hidden sm:block">{dict.header.title}</span>
+            <span className="font-bold text-xl sm:hidden">{dict.header.titleShort}</span>
           </Link>
         </div>
         
         <nav className="flex items-center space-x-6 text-sm font-medium flex-1">
           <Link
             href={`/${lang}`}
-            className="transition-colors hover:text-foreground/80 text-foreground"
+            className={`transition-colors hover:text-foreground/80 ${
+              isActivePage(`/${lang}`)
+                ? 'text-foreground font-semibold'
+                : 'text-foreground/60'
+            }`}
           >
             {dict.navigation.home}
           </Link>
           <Link
             href={`/${lang}/apps`}
-            className="transition-colors hover:text-foreground/80 text-foreground/60"
+            className={`transition-colors hover:text-foreground/80 ${
+              isActivePage(`/${lang}/apps`)
+                ? 'text-foreground font-semibold'
+                : 'text-foreground/60'
+            }`}
           >
             {dict.navigation.apps}
           </Link>
           <Link
             href={`/${lang}/about`}
-            className="transition-colors hover:text-foreground/80 text-foreground/60"
+            className={`transition-colors hover:text-foreground/80 ${
+              isActivePage(`/${lang}/about`)
+                ? 'text-foreground font-semibold'
+                : 'text-foreground/60'
+            }`}
           >
             {dict.navigation.about}
           </Link>
