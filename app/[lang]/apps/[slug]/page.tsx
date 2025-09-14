@@ -20,6 +20,33 @@ interface AppPageProps {
   }>;
 }
 
+// 生成静态参数用于静态导出
+export async function generateStaticParams() {
+  // 所有支持的语言
+  const languages: Locale[] = ['zh', 'en'];
+
+  // 所有应用的 slug（从数据文件中获取）
+  const appSlugs = [
+    'desktop-switcher',
+    'ai-garden-party',
+    'onesearch',
+    'omniword'
+  ];
+
+  // 生成所有语言和应用的组合
+  const params = [];
+  for (const lang of languages) {
+    for (const slug of appSlugs) {
+      params.push({
+        lang,
+        slug
+      });
+    }
+  }
+
+  return params;
+}
+
 // 多语言翻译对象
 const translations = {
   zh: {

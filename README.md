@@ -1237,6 +1237,3 @@ README.md: 项目的说明文档。
 想添加一个项目？ 主要修改 data/apps/ 目录下的文件。
 想改网站名字？ 去 config/site.ts。
 想换图片？ 去 public/images/。
-
----
-✅ **部署状态更新**: ESLint 错误已修复，代码已优化，准备部署到 Cloudflare Pages
