@@ -14,6 +14,8 @@ npm run dev
 
 # Build for production
 npm run build
+# Alternative build command for Cloudflare
+npm run build:cloudflare
 
 # Start production server
 npm run start
