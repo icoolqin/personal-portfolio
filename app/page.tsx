@@ -1,32 +1,58 @@
-'use client';
+import { Metadata } from 'next';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+export const metadata: Metadata = {
+  title: 'Personal Portfolio',
+  description: 'A personal portfolio website',
+};
 
 export default function RootPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    // 客户端语言检测和重定向
-    const detectLanguage = () => {
-      // 检查浏览器语言偏好
-      const browserLang = navigator.language.toLowerCase();
-      const defaultLang = browserLang.startsWith('zh') ? 'zh' : 'en';
-
-      // 重定向到检测到的语言页面
-      router.replace(`/${defaultLang}`);
-    };
-
-    detectLanguage();
-  }, [router]);
-
-  // 显示加载状态
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4"></div>
-        <p className="text-gray-600">Loading...</p>
-      </div>
-    </div>
+    <html lang="en">
+      <head>
+        <meta httpEquiv="refresh" content="0; url=/en" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const lang = navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en';
+                window.location.replace('/' + lang);
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body>
+        <div style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontFamily: 'system-ui, sans-serif'
+        }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{
+              width: '32px',
+              height: '32px',
+              border: '2px solid #f3f3f3',
+              borderTop: '2px solid #3498db',
+              borderRadius: '50%',
+              animation: 'spin 1s linear infinite',
+              margin: '0 auto 16px'
+            }}></div>
+            <p style={{ color: '#666' }}>Loading...</p>
+          </div>
+        </div>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+              }
+            `,
+          }}
+        />
+      </body>
+    </html>
   );
 }

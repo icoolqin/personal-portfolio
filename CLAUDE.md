@@ -50,12 +50,13 @@ The project supports bilingual content (Chinese/English) with the following stru
 - `types/` - TypeScript type definitions
 
 ### Key Architecture Patterns
-- **Content Management**: Uses MDX files in `data/apps/` for app details with JSON index
+- **Content Management**: Uses MDX files in `data/apps/` for app details with JSON index, plus embedded app data in page components for featured apps
 - **Styling**: Tailwind CSS with shadcn/ui component system and CSS custom properties
 - **Routing**: Next.js App Router with dynamic routes for app details (`/apps/[slug]` and `/[lang]/apps/[slug]`)
-- **Data Fetching**: Static generation with local JSON/MDX files
-- **Internationalization**: Dynamic locale-based routing with metadata generation
+- **Data Fetching**: Static generation with local JSON/MDX files and embedded app data
+- **Internationalization**: Dynamic locale-based routing with embedded dictionaries in page components
 - **Component Architecture**: Client components with `use client` directive where needed
+- **Static Export**: Configured for static site generation with `output: 'export'` in Next.js config
 
 ## Content Management
 
@@ -127,7 +128,7 @@ Apps in `data/apps/index.json` follow this structure:
 
 ## Configuration Files
 
-- `next.config.ts` - Next.js configuration with i18n settings
+- `next.config.ts` - Next.js configuration with i18n settings, static export configuration, and webpack optimizations
 - `tailwind.config.ts` - Tailwind CSS with custom theme and shadcn/ui tokens
 - `eslint.config.mjs` - ESLint configuration extending Next.js rules using flat config
 - `tsconfig.json` - TypeScript strict mode configuration
@@ -137,13 +138,15 @@ Apps in `data/apps/index.json` follow this structure:
 
 - Uses MDX for rich content in app descriptions with gray-matter frontmatter parsing
 - Implements responsive design with Tailwind CSS and CSS custom properties
-- No external database - content managed through local JSON and MDX files
+- No external database - content managed through local JSON/MDX files and embedded app data in page components
 - SEO optimized with proper metadata and Open Graph tags
-- Images optimized through Next.js Image component
-- Bilingual support with dynamic locale-based routing
+- Images configured for static export (`unoptimized: true` in Next.js config)
+- Bilingual support with dynamic locale-based routing and embedded dictionaries
 - Client components use `use client` directive for interactivity
-- Static site generation for optimal performance
+- Static site generation with `output: 'export'` for deployment to static hosting
+- Webpack optimizations for bundle size reduction
+- Trailing slash enabled for consistent URL structure
 
 ## Build and Deployment
 
-The project is configured for static site generation and deployment to Cloudflare Pages. Run `npm run build` to create the production build.
+The project is configured for static site generation with `output: 'export'` and deployment to Cloudflare Pages. The build process creates optimized static files that can be deployed to any static hosting service. Run `npm run build` or `npm run build:cloudflare` to create the production build.
