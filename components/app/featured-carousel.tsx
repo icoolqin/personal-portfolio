@@ -119,16 +119,16 @@ export function FeaturedCarousel({
               )}
             </Button>
           )}
-          
-          {/* 应用指示器 */}
-          <div className="flex gap-1 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full px-3 py-2">
+
+          {/* 应用指示器 - 桌面端显示 */}
+          <div className="hidden sm:flex gap-1 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full px-3 py-2">
             {apps.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`w-2 h-2 rounded-full transition-all ${
-                  index === currentIndex 
-                    ? "bg-blue-600 dark:bg-blue-400 w-6" 
+                  index === currentIndex
+                    ? "bg-blue-600 dark:bg-blue-400 w-6"
                     : "bg-gray-400 dark:bg-gray-600 hover:bg-gray-500"
                 }`}
                 aria-label={`切换到第 ${index + 1} 个应用`}
@@ -288,26 +288,55 @@ export function FeaturedCarousel({
           </div>
         </div>
 
-        {/* 左右切换按钮（仅在有多个应用时显示） */}
+        {/* 桌面端：侧边切换按钮（仅在有多个应用时显示） */}
         {apps.length > 1 && (
           <>
+            {/* 桌面端侧边按钮 */}
             <button
                 onClick={goToPrevious}
-                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-full p-3 sm:p-2 shadow-xl hover:shadow-2xl transition-all hover:scale-110 text-gray-800 dark:text-gray-100 hover:bg-white dark:hover:bg-gray-700 border border-gray-200/50 dark:border-gray-600/50"
+                className="hidden lg:flex absolute left-4 top-1/2 -translate-y-1/2 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-full p-2 shadow-xl hover:shadow-2xl transition-all hover:scale-110 text-gray-800 dark:text-gray-100 hover:bg-white dark:hover:bg-gray-700 border border-gray-200/50 dark:border-gray-600/50 items-center justify-center"
                 aria-label="上一个应用"
                 >
-                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                <ChevronLeft className="w-6 h-6" />
             </button>
             <button
                 onClick={goToNext}
-                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-full p-3 sm:p-2 shadow-xl hover:shadow-2xl transition-all hover:scale-110 text-gray-800 dark:text-gray-100 hover:bg-white dark:hover:bg-gray-700 border border-gray-200/50 dark:border-gray-600/50"
+                className="hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-full p-2 shadow-xl hover:shadow-2xl transition-all hover:scale-110 text-gray-800 dark:text-gray-100 hover:bg-white dark:hover:bg-gray-700 border border-gray-200/50 dark:border-gray-600/50 items-center justify-center"
                 aria-label="下一个应用"
                 >
-                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                <ChevronRight className="w-6 h-6" />
             </button>
           </>
         )}
       </div>
+
+      {/* 移动端和平板：底部导航按钮 */}
+      {apps.length > 1 && (
+        <div className="lg:hidden flex justify-center items-center gap-4 mt-6 px-4">
+          <button
+            onClick={goToPrevious}
+            className="flex items-center justify-center bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-full p-3 shadow-lg hover:shadow-xl transition-all hover:scale-105 text-gray-800 dark:text-gray-100 hover:bg-white dark:hover:bg-gray-700 border border-gray-200/50 dark:border-gray-600/50"
+            aria-label="上一个应用"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          {/* 中间的指示器 */}
+          <div className="flex items-center gap-2 px-4 py-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full border border-gray-200/50 dark:border-gray-600/50">
+            <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
+              {currentIndex + 1} / {apps.length}
+            </span>
+          </div>
+
+          <button
+            onClick={goToNext}
+            className="flex items-center justify-center bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-full p-3 shadow-lg hover:shadow-xl transition-all hover:scale-105 text-gray-800 dark:text-gray-100 hover:bg-white dark:hover:bg-gray-700 border border-gray-200/50 dark:border-gray-600/50"
+            aria-label="下一个应用"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      )}
 
       {/* 进度条 */}
       {apps.length > 1 && isAutoPlaying && (
