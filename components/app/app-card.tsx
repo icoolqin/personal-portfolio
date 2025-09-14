@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Download } from "lucide-react";
+// 移除未使用的导入
 import type { App } from "@/types";
 import { usePathname } from 'next/navigation';
 

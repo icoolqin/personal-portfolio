@@ -5,37 +5,6 @@ import { use } from 'react';
 
 type Locale = 'zh' | 'en';
 
-interface App {
-  id: string;
-  slug: string;
-  name: string;
-  shortDescription: string;
-  fullDescription: string;
-  category: string;
-  platform: string[];
-  tags: string[];
-  icon: string;
-  banner: string;
-  screenshots: string[];
-  links: {
-    download?: string;
-    demo?: string;
-    chrome?: string;
-    edge?: string;
-  };
-  version: string;
-  releaseDate: string;
-  lastUpdateDate: string;
-  stats: {
-    users: number;
-    rating: number;
-  };
-  features: string[];
-  techStack: string[];
-  featured: boolean;
-  price: string;
-}
-
 const dictionaries = {
   zh: {
     apps: {

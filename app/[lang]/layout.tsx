@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "../globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { notFound } from 'next/navigation';
-
-const inter = Inter({ subsets: ["latin"] });
 
 type Locale = 'zh' | 'en';
 const locales: Locale[] = ['zh', 'en'];

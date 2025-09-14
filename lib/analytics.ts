@@ -1,18 +1,21 @@
+// 定义事件参数类型
+type EventParameters = Record<string, string | number | boolean | null | undefined>;
+
 // 声明全局类型
 declare global {
   interface Window {
     zaraz?: {
-      track: (eventName: string, parameters: Record<string, any>) => void;
+      track: (eventName: string, parameters: EventParameters) => void;
     };
     gtag?: (
       command: 'event',
       eventName: string,
-      parameters: Record<string, any>
+      parameters: EventParameters
     ) => void;
   }
 }
 
-export const trackEvent = (eventName: string, parameters: Record<string, any>) => {
+export const trackEvent = (eventName: string, parameters: EventParameters) => {
   // Cloudflare Web Analytics
   if (window.zaraz) {
     window.zaraz.track(eventName, parameters);

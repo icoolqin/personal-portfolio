@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Mail, MapPin, Github, ExternalLink } from "lucide-react";
+import { Mail, MapPin, Github } from "lucide-react";
 import { use } from 'react';
 
 type Locale = 'zh' | 'en';

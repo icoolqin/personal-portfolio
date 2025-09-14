@@ -4,17 +4,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useRouter, usePathname } from 'next/navigation';
 import { Globe } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
 type Locale = 'zh' | 'en';
 
 interface HeaderProps {
   lang: Locale;
-}
-
-interface Dictionary {
-  header: { title: string };
-  navigation: { home: string; apps: string; about: string };
 }
 
 const dictionaries = {

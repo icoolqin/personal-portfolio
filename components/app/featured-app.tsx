@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Download, ExternalLink, Star } from "lucide-react";
+import { Download, Star } from "lucide-react";
 import type { App } from "@/types";
 
 interface FeaturedAppProps {

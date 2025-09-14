@@ -63,21 +63,37 @@ const translations = {
 };
 
 // 自定义 MDX 组件样式
-const mdxComponents = {
-  h1: (props: any) => <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />,
-  h2: (props: any) => <h2 className="text-2xl font-bold mt-6 mb-3" {...props} />,
-  h3: (props: any) => <h3 className="text-xl font-semibold mt-4 mb-2" {...props} />,
-  p: (props: any) => <p className="mb-4 leading-relaxed" {...props} />,
-  ul: (props: any) => <ul className="list-disc list-outside mb-4 space-y-2 ml-6" {...props} />,
-  ol: (props: any) => <ol className="list-decimal list-outside mb-4 space-y-2 ml-6" {...props} />,
-  li: (props: any) => <li className="leading-relaxed" {...props} />,
-  blockquote: (props: any) => (
+import { ComponentPropsWithoutRef, ReactElement } from 'react';
+
+type MDXComponents = {
+  h1: (props: ComponentPropsWithoutRef<'h1'>) => ReactElement;
+  h2: (props: ComponentPropsWithoutRef<'h2'>) => ReactElement;
+  h3: (props: ComponentPropsWithoutRef<'h3'>) => ReactElement;
+  p: (props: ComponentPropsWithoutRef<'p'>) => ReactElement;
+  ul: (props: ComponentPropsWithoutRef<'ul'>) => ReactElement;
+  ol: (props: ComponentPropsWithoutRef<'ol'>) => ReactElement;
+  li: (props: ComponentPropsWithoutRef<'li'>) => ReactElement;
+  blockquote: (props: ComponentPropsWithoutRef<'blockquote'>) => ReactElement;
+  code: (props: ComponentPropsWithoutRef<'code'>) => ReactElement;
+  pre: (props: ComponentPropsWithoutRef<'pre'>) => ReactElement;
+  hr: () => ReactElement;
+};
+
+const mdxComponents: MDXComponents = {
+  h1: (props: ComponentPropsWithoutRef<'h1'>) => <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />,
+  h2: (props: ComponentPropsWithoutRef<'h2'>) => <h2 className="text-2xl font-bold mt-6 mb-3" {...props} />,
+  h3: (props: ComponentPropsWithoutRef<'h3'>) => <h3 className="text-xl font-semibold mt-4 mb-2" {...props} />,
+  p: (props: ComponentPropsWithoutRef<'p'>) => <p className="mb-4 leading-relaxed" {...props} />,
+  ul: (props: ComponentPropsWithoutRef<'ul'>) => <ul className="list-disc list-outside mb-4 space-y-2 ml-6" {...props} />,
+  ol: (props: ComponentPropsWithoutRef<'ol'>) => <ol className="list-decimal list-outside mb-4 space-y-2 ml-6" {...props} />,
+  li: (props: ComponentPropsWithoutRef<'li'>) => <li className="leading-relaxed" {...props} />,
+  blockquote: (props: ComponentPropsWithoutRef<'blockquote'>) => (
     <blockquote className="border-l-4 border-blue-500 pl-4 my-4 italic" {...props} />
   ),
-  code: (props: any) => (
+  code: (props: ComponentPropsWithoutRef<'code'>) => (
     <code className="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm" {...props} />
   ),
-  pre: (props: any) => (
+  pre: (props: ComponentPropsWithoutRef<'pre'>) => (
     <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto mb-4" {...props} />
   ),
   hr: () => <hr className="my-8 border-gray-300 dark:border-gray-700" />,
@@ -113,7 +129,7 @@ export default async function AppPage({ params }: AppPageProps) {
     const dataPath = path.join(process.cwd(), 'data', 'apps', `index-${lang}.json`);
     const dataContent = fs.readFileSync(dataPath, 'utf-8');
     appsData = JSON.parse(dataContent);
-  } catch (error) {
+  } catch {
     // 如果找不到对应语言的文件，回退到英文
     const fallbackPath = path.join(process.cwd(), 'data', 'apps', 'index-en.json');
     const fallbackContent = fs.readFileSync(fallbackPath, 'utf-8');
@@ -159,7 +175,7 @@ export default async function AppPage({ params }: AppPageProps) {
         hasMdxContent = false;
       }
     }
-  } catch (error) {
+  } catch {
     console.log(`MDX file not found for ${slug}`);
   }
 
@@ -218,26 +234,26 @@ export default async function AppPage({ params }: AppPageProps) {
           {/* OneSearch / OmniWord 的两个商店按钮 */}
           {(app.slug === 'onesearch' || app.slug === 'omniword') && (
             <>
-              {(app.links as any).chrome && (
-                <Button 
-                  asChild 
-                  size="lg" 
+              {app.links.chrome && (
+                <Button
+                  asChild
+                  size="lg"
                   className="bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all"
                 >
-                  <a href={(app.links as any).chrome} target="_blank" rel="noopener noreferrer">
+                  <a href={app.links.chrome} target="_blank" rel="noopener noreferrer">
                     <FaChrome className="w-5 h-5 mr-2" />
                     {t.chromeStore}
                   </a>
                 </Button>
               )}
-              
-              {(app.links as any).edge && (
-                <Button 
-                  asChild 
-                  size="lg" 
+
+              {app.links.edge && (
+                <Button
+                  asChild
+                  size="lg"
                   className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white shadow-md hover:shadow-lg transition-all"
                 >
-                  <a href={(app.links as any).edge} target="_blank" rel="noopener noreferrer">
+                  <a href={app.links.edge} target="_blank" rel="noopener noreferrer">
                     <FaEdge className="w-5 h-5 mr-2" />
                     {t.edgeStore}
                   </a>
