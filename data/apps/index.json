@@ -71,7 +71,7 @@
       "slug": "onesearch",
       "name": "OneSearch",
       "shortDescription": "Bookmark & Multi-AI Searcher - 书签管理从未如此轻松",
-      "fullDescription": "书签管理从未如此轻松！现已支持AI搜索 & 完全键盘操作！OneSearch 是一款强大的浏览器插件，让您的书签管理变得前所未有的高效。通过智能分类、闪电般的搜索速度和全新的AI搜索功能，告别杂乱无序的书签管理。",
+      "fullDescription": "书签管理从未如此轻松！现已支持AI搜索 & 完全键盘操作！OneSearch 是一款强大的书签&多AI搜索浏览器插件，让您的书签管理变得前所未有的高效。通过智能分类、闪电般的搜索速度和全新的AI搜索功能，告别杂乱无序的书签管理。",
       "category": "浏览器插件",
       "platform": ["Chrome", "Microsoft Edge"],
       "tags": ["书签管理", "AI搜索", "生产力", "浏览器扩展", "键盘快捷键"],

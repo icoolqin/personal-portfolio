@@ -14,7 +14,7 @@ const dictionaries = {
       moreApps: "更多应用",
       moreAppsDescription: "探索我开发的其他应用，每一个都致力于提升你的数字体验。",
       aboutMe: "关于我",
-      aboutMeDescription: "我是一名独立开发者，专注于创建实用、美观的应用程序。我相信技术应该让生活更简单、更高效。每一个应用都是我对完美用户体验的追求。"
+      aboutMeDescription: "我是一名独立开发者，专注于创建实用、美观的应用程序。我相信技术应该让生活更简单、更高效。每个应用都调到个人用起来舒服了，哈哈，如果你有改进建议，请邮箱联系我，谢谢。"
     },
     common: {
       viewAll: "查看所有应用",
@@ -26,7 +26,7 @@ const dictionaries = {
       moreApps: "More Apps",
       moreAppsDescription: "Explore other applications I've developed, each dedicated to enhancing your digital experience.",
       aboutMe: "About Me",
-      aboutMeDescription: "I am an independent developer focused on creating practical and beautiful applications. I believe technology should make life simpler and more efficient. Every application is my pursuit of perfect user experience."
+      aboutMeDescription: "I am an independent developer focused on creating practical and beautiful applications. I believe technology should make life simpler and more efficient. Every app is tuned until it feels right for me to use, haha. If you have suggestions for improvements, please email me. Thanks!"
     },
     common: {
       viewAll: "View All Apps",
@@ -65,7 +65,7 @@ const appsData = {
         slug: "onesearch",
         name: "OneSearch",
         shortDescription: "书签管理从未如此轻松",
-        fullDescription: "OneSearch 是一款强大的浏览器插件",
+        fullDescription: "OneSearch 是一款强大的书签&多AI搜索浏览器插件",
         category: "浏览器插件",
         platform: ["Chrome"],
         tags: ["书签管理"],
@@ -138,7 +138,7 @@ const appsData = {
         slug: "onesearch",
         name: "OneSearch",
         shortDescription: "Bookmark management has never been easier",
-        fullDescription: "OneSearch is a powerful browser extension",
+        fullDescription: "OneSearch is a powerful bookmark & multi-AI search browser extension",
         category: "Browser Extension",
         platform: ["Chrome"],
         tags: ["Bookmark Management"],

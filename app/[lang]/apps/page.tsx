@@ -9,13 +9,13 @@ const dictionaries = {
   zh: {
     apps: {
       title: "我的应用",
-      description: "这里展示了我开发的所有应用，每一个都经过精心设计和开发。"
+      description: "这里展示了我开发的所有应用，每一个都是与AI一起做的。"
     }
   },
   en: {
     apps: {
       title: "My Apps",
-      description: "Here are all the applications I've developed, each carefully designed and built."
+      description: "Here are all the applications I've developed, each built together with AI."
     }
   }
 };
@@ -50,7 +50,7 @@ const appsData = {
         slug: "onesearch",
         name: "OneSearch",
         shortDescription: "书签管理从未如此轻松",
-        fullDescription: "OneSearch 是一款强大的浏览器插件",
+        fullDescription: "OneSearch 是一款强大的书签&多AI搜索浏览器插件",
         category: "浏览器插件",
         platform: ["Chrome"],
         tags: ["书签管理"],
@@ -145,7 +145,7 @@ const appsData = {
         slug: "onesearch",
         name: "OneSearch",
         shortDescription: "Bookmark management has never been easier",
-        fullDescription: "OneSearch is a powerful browser extension",
+        fullDescription: "OneSearch is a powerful bookmark & multi-AI search browser extension",
         category: "Browser Extension",
         platform: ["Chrome"],
         tags: ["Bookmark Management"],

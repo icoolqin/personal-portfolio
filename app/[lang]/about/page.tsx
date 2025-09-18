@@ -15,7 +15,7 @@ const dictionaries = {
       title: "关于我",
       description: "了解更多关于我的背景、技能和开发理念",
       aboutMeTitle: "关于我",
-      aboutMeContent1: "我是一名热爱技术的独立开发者，专注于创建实用、美观的应用程序。我相信技术应该让生活更简单、更高效，每一个应用都是我对完美用户体验的追求。",
+      aboutMeContent1: "我是一名热爱技术的独立开发者，专注于创建实用、美观的应用程序。我相信技术应该让生活更简单、更高效，每个应用都调到个人用起来舒服了，哈哈，如果你有改进建议，请邮箱联系我，谢谢。",
       aboutMeContent2: "作为产品经理，我深入理解用户需求，善于将复杂的问题转化为简洁的解决方案。同时，我也积极拥抱AI时代，熟练运用各种AI工具来提升开发效率和产品质量。",
       philosophy: "开发理念",
       philosophyItems: [
@@ -24,7 +24,7 @@ const dictionaries = {
         "持续学习，拥抱新技术和新工具",
         "开源精神，分享知识和经验"
       ],
-      techStackTitle: "技术栈与工具",
+      techStackTitle: "技术栈与工具(其实只会跟AI交流，哈哈)",
       frontend: "前端开发",
       desktop: "桌面开发",
       aiTools: "AI工具",
@@ -46,7 +46,7 @@ const dictionaries = {
       title: "About Me",
       description: "Learn more about my background, skills, and development philosophy",
       aboutMeTitle: "About Me",
-      aboutMeContent1: "I am a technology-loving independent developer focused on creating practical and beautiful applications. I believe technology should make life simpler and more efficient, and every application is my pursuit of perfect user experience.",
+      aboutMeContent1: "I am a technology-loving independent developer focused on creating practical and beautiful applications. I believe technology should make life simpler and more efficient, and every app is tuned until it feels right for me to use, haha. If you have suggestions for improvements, please email me. Thanks.",
       aboutMeContent2: "As a product manager, I deeply understand user needs and am good at transforming complex problems into simple solutions. At the same time, I actively embrace the AI era and skillfully use various AI tools to improve development efficiency and product quality.",
       philosophy: "Development Philosophy",
       philosophyItems: [
@@ -55,7 +55,7 @@ const dictionaries = {
         "Continuous learning, embracing new technologies and tools",
         "Open source spirit, sharing knowledge and experience"
       ],
-      techStackTitle: "Tech Stack & Tools",
+      techStackTitle: "Tech Stack & Tools (basically just chatting with AI, haha)",
       frontend: "Frontend Development",
       desktop: "Desktop Development",
       aiTools: "AI Tools",

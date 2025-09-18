@@ -71,7 +71,7 @@
       "slug": "onesearch",
       "name": "OneSearch",
       "shortDescription": "Bookmark & Multi-AI Searcher - Bookmark management has never been easier",
-      "fullDescription": "Bookmark management has never been easier! Now supports AI search & full keyboard operation! OneSearch is a powerful browser extension that makes your bookmark management more efficient than ever. With smart categorization, lightning-fast search speed, and new AI search functionality, say goodbye to messy bookmark management.",
+      "fullDescription": "Bookmark management has never been easier! Now supports AI search & full keyboard operation! OneSearch is a powerful bookmark & multi-AI search browser extension that makes your bookmark management more efficient than ever. With smart categorization, lightning-fast search speed, and new AI search functionality, say goodbye to messy bookmark management.",
       "category": "Browser Extension",
       "platform": ["Chrome", "Microsoft Edge"],
       "tags": ["Bookmark Management", "AI Search", "Productivity", "Browser Extension", "Keyboard Shortcuts"],
