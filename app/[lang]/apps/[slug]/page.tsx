@@ -10,8 +10,7 @@ import type { App } from "@/types";
 import fs from "fs";
 import path from "path";
 import { MDXRemote } from "next-mdx-remote/rsc";
-
-type Locale = 'zh' | 'en';
+import { i18n, type Locale } from "@/next.config";
 
 interface AppPageProps {
   params: Promise<{
@@ -23,7 +22,7 @@ interface AppPageProps {
 // 生成静态参数用于静态导出
 export async function generateStaticParams() {
   // 所有支持的语言
-  const languages: Locale[] = ['zh', 'en'];
+  const languages = i18n.locales;
 
   // 所有应用的 slug（从数据文件中获取）
   const appSlugs = [
@@ -148,17 +147,18 @@ function preprocessMDX(content: string): string {
 
 export default async function AppPage({ params }: AppPageProps) {
   const { slug, lang } = await params;
-  const t = translations[lang];
+  const locale = i18n.locales.includes(lang) ? lang : i18n.defaultLocale;
+  const t = translations[locale];
   
   // 根据语言加载对应的数据文件
   let appsData;
   try {
-    const dataPath = path.join(process.cwd(), 'data', 'apps', `index-${lang}.json`);
+    const dataPath = path.join(process.cwd(), 'data', 'apps', `index-${locale}.json`);
     const dataContent = fs.readFileSync(dataPath, 'utf-8');
     appsData = JSON.parse(dataContent);
   } catch {
     // 如果找不到对应语言的文件，回退到英文
-    const fallbackPath = path.join(process.cwd(), 'data', 'apps', 'index-en.json');
+    const fallbackPath = path.join(process.cwd(), 'data', 'apps', `index-${i18n.defaultLocale}.json`);
     const fallbackContent = fs.readFileSync(fallbackPath, 'utf-8');
     appsData = JSON.parse(fallbackContent);
   }
@@ -176,7 +176,7 @@ export default async function AppPage({ params }: AppPageProps) {
   
   try {
     // 首先尝试读取对应语言的 MDX 文件
-    let mdxPath = path.join(process.cwd(), 'data', 'apps', `${slug}-${lang}.mdx`);
+    let mdxPath = path.join(process.cwd(), 'data', 'apps', `${slug}-${locale}.mdx`);
     
     // 如果对应语言的文件不存在，回退到通用文件
     if (!fs.existsSync(mdxPath)) {
@@ -464,12 +464,12 @@ export default async function AppPage({ params }: AppPageProps) {
       {/* 返回按钮 */}
       <div className="flex justify-center gap-4 pt-8 border-t">
         <Button asChild variant="outline" size="lg">
-          <Link href={`/${lang}/apps`}>
+          <Link href={`/${locale}/apps`}>
             {t.backToApps}
           </Link>
         </Button>
         <Button asChild variant="ghost" size="lg">
-          <Link href={`/${lang}`}>
+          <Link href={`/${locale}`}>
             {t.backToHome}
           </Link>
         </Button>

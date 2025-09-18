@@ -2,12 +2,10 @@ import type { Metadata } from "next";
 import "../globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation";
+import { i18n, type Locale } from "@/next.config";
 
-type Locale = 'zh' | 'en';
-const locales: Locale[] = ['zh', 'en'];
-
-const metadataDict = {
+const metadataDict: Record<Locale, { title: string; description: string }> = {
   zh: {
     title: "个人作品集 - 展示我的应用作品",
     description: "一个展示我的APP作品的网站，包括桌面应用、Web应用等。"
@@ -19,7 +17,7 @@ const metadataDict = {
 };
 
 export async function generateStaticParams() {
-  return locales.map((locale) => ({ lang: locale }));
+  return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
 export async function generateMetadata({
@@ -28,8 +26,9 @@ export async function generateMetadata({
   params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  const dict = metadataDict[lang] || metadataDict.en;
-  
+  const locale = i18n.locales.includes(lang) ? lang : i18n.defaultLocale;
+  const dict = metadataDict[locale];
+
   return {
     title: dict.title,
     description: dict.description,
@@ -44,18 +43,19 @@ export default async function LangLayout({
   params: Promise<{ lang: Locale }>;
 }) {
   const { lang } = await params;
+  const locale = i18n.locales.includes(lang) ? lang : i18n.defaultLocale;
   // 验证语言参数
-  if (!locales.includes(lang)) {
+  if (!i18n.locales.includes(lang)) {
     notFound();
   }
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header lang={lang} />
+      <Header lang={locale} />
       <main className="flex-1">
         {children}
       </main>
-      <Footer lang={lang} />
+      <Footer lang={locale} />
     </div>
   );
 }

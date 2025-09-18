@@ -5,11 +5,8 @@ import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-// 移除未使用的导入
 import type { App } from "@/types";
-import { usePathname } from 'next/navigation';
-
-type Locale = 'zh' | 'en';
+import type { Locale } from "@/next.config";
 
 const translations = {
   zh: {
@@ -24,12 +21,12 @@ const translations = {
 
 interface AppCardProps {
   app: App;
+  locale: Locale;
 }
 
-export function AppCard({ app }: AppCardProps) {
-  const pathname = usePathname();
-  const lang = (pathname.split('/')[1] as Locale) || 'zh';
-  const t = translations[lang] || translations.zh;
+export function AppCard({ app, locale }: AppCardProps) {
+  const lang = translations[locale] ? locale : 'zh';
+  const t = translations[lang];
   
   return (
     <Link href={`/${lang}/apps/${app.slug}`} className="block">

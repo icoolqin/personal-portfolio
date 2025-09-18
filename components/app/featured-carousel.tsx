@@ -14,9 +14,7 @@ import {
   Play
 } from "lucide-react";
 import type { App } from "@/types";
-import { usePathname } from 'next/navigation';
-
-type Locale = 'zh' | 'en';
+import type { Locale } from "@/next.config";
 
 const translations = {
   zh: {
@@ -41,16 +39,17 @@ const translations = {
 
 interface FeaturedCarouselProps {
   apps: App[];
+  locale: Locale;
   autoPlayInterval?: number; // 自动播放间隔（毫秒）
 }
 
-export function FeaturedCarousel({ 
-  apps, 
-  autoPlayInterval = 5000 
+export function FeaturedCarousel({
+  apps,
+  locale,
+  autoPlayInterval = 5000,
 }: FeaturedCarouselProps) {
-  const pathname = usePathname();
-  const lang = (pathname.split('/')[1] as Locale) || 'zh';
-  const t = translations[lang] || translations.zh;
+  const lang = translations[locale] ? locale : "zh";
+  const t = translations[lang];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isPaused, setIsPaused] = useState(false);

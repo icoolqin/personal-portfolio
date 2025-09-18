@@ -1,236 +1,89 @@
-'use client';
-
+import Link from "next/link";
 import { FeaturedCarousel } from "@/components/app/featured-carousel";
 import { AppCard } from "@/components/app/app-card";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { use } from 'react';
+import { getDictionary } from "@/lib/dictionaries";
+import { getAppsData } from "@/lib/apps";
+import { i18n, type Locale } from "@/next.config";
 
-type Locale = 'zh' | 'en';
+interface PageProps {
+  params: Promise<{ lang: Locale }>;
+}
 
-const dictionaries = {
-  zh: {
-    home: {
-      moreApps: "更多应用",
-      moreAppsDescription: "探索我开发的其他应用，每一个都致力于提升你的数字体验。",
-      aboutMe: "关于我",
-      aboutMeDescription: "我是一名独立开发者，专注于创建实用、美观的应用程序。我相信技术应该让生活更简单、更高效。每个应用都调到个人用起来舒服了，哈哈，如果你有改进建议，请邮箱联系我，谢谢。"
-    },
-    common: {
-      viewAll: "查看所有应用",
-      learnMore: "了解更多"
-    }
-  },
-  en: {
-    home: {
-      moreApps: "More Apps",
-      moreAppsDescription: "Explore other applications I've developed, each dedicated to enhancing your digital experience.",
-      aboutMe: "About Me",
-      aboutMeDescription: "I am an independent developer focused on creating practical and beautiful applications. I believe technology should make life simpler and more efficient. Every app is tuned until it feels right for me to use, haha. If you have suggestions for improvements, please email me. Thanks!"
-    },
-    common: {
-      viewAll: "View All Apps",
-      learnMore: "Learn More"
-    }
-  }
-};
+const DEFAULT_MORE_APPS = "More Apps";
+const DEFAULT_MORE_APPS_DESCRIPTION = "Explore other applications I've developed, each dedicated to enhancing your digital experience.";
+const DEFAULT_LEARN_MORE = "Learn More";
+const DEFAULT_VIEW_ALL = "View All Apps";
+const DEFAULT_ABOUT_ME = "About Me";
+const DEFAULT_ABOUT_ME_DESCRIPTION = "I am an independent developer focused on creating practical and beautiful applications.";
 
-const appsData = {
-  zh: {
-    apps: [
-      {
-        id: "desktop-switcher",
-        slug: "desktop-switcher",
-        name: "DesktopSwitcher",
-        shortDescription: "虚拟桌面，一键切换",
-        fullDescription: "DesktopSwitcher是一个强大的虚拟桌面管理工具",
-        category: "桌面工具",
-        platform: ["Windows 10", "Windows 11"],
-        tags: ["虚拟桌面", "生产力"],
-        icon: "/images/desktop_switcher.png",
-        banner: "/images/DesktopSwitcher.png",
-        screenshots: ["/images/DesktopSwitcher.png"],
-        links: { download: "#" },
-        version: "1.0.0",
-        releaseDate: "2024-01-01",
-        lastUpdateDate: "2024-01-01",
-        stats: { users: 1000, rating: 4.8 },
-        features: ["快速切换桌面"],
-        techStack: ["C++"],
-        featured: true,
-        price: "$2.99"
-      },
-      {
-        id: "onesearch",
-        slug: "onesearch",
-        name: "OneSearch",
-        shortDescription: "书签管理从未如此轻松",
-        fullDescription: "OneSearch 是一款强大的书签&多AI搜索浏览器插件",
-        category: "浏览器插件",
-        platform: ["Chrome"],
-        tags: ["书签管理"],
-        icon: "/images/oneSearch.webp",
-        banner: "/images/oneSearch.png",
-        screenshots: ["/images/oneSearch.png"],
-        links: { download: "#" },
-        version: "2.0.0",
-        releaseDate: "2024-03-01",
-        lastUpdateDate: "2024-12-01",
-        stats: { users: 5000, rating: 4.9 },
-        features: ["快速搜索"],
-        techStack: ["JavaScript"],
-        featured: true,
-        price: "免费"
-      },
-      {
-        id: "omniword",
-        slug: "omniword",
-        name: "OmniWord",
-        shortDescription: "划词翻译与 AI 说文解字",
-        fullDescription: "网页划词与弹窗查词，AI 词源/词缀/语境讲解，理解更深入。",
-        category: "浏览器插件",
-        platform: ["Chrome", "Microsoft Edge"],
-        tags: ["划词翻译", "AI 翻译"],
-        icon: "/images/OmniWord.png",
-        banner: "/images/OmniWordPoster.png",
-        screenshots: ["/images/OmniWordPoster.png"],
-        links: { 
-          chrome: "https://chromewebstore.google.com/detail/iljgnmpnjfimmjfielhfecogghncdgjb?utm_source=item-share-cb",
-          edge: "https://microsoftedge.microsoft.com/addons/detail/omniword-%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91/lpfaifjlmdbknabibdbglanhfdjnljgo"
-        },
-        version: "1.0.0",
-        releaseDate: "2024-01-01",
-        lastUpdateDate: "2024-01-01",
-        stats: { users: 2000, rating: 4.8 },
-        features: ["划词即译", "AI 深度讲解"],
-        techStack: ["TypeScript"],
-        featured: true,
-        price: "免费"
-      }
-    ]
-  },
-  en: {
-    apps: [
-      {
-        id: "desktop-switcher",
-        slug: "desktop-switcher",
-        name: "DesktopSwitcher",
-        shortDescription: "Your Virtual Desktops, Just a Click Away",
-        fullDescription: "DesktopSwitcher is a powerful virtual desktop management tool",
-        category: "Desktop Tools",
-        platform: ["Windows 10", "Windows 11"],
-        tags: ["Virtual Desktop", "Productivity"],
-        icon: "/images/desktop_switcher.png",
-        banner: "/images/DesktopSwitcher.png",
-        screenshots: ["/images/DesktopSwitcher.png"],
-        links: { download: "#" },
-        version: "1.0.0",
-        releaseDate: "2024-01-01",
-        lastUpdateDate: "2024-01-01",
-        stats: { users: 1000, rating: 4.8 },
-        features: ["Quick desktop switching"],
-        techStack: ["C++"],
-        featured: true,
-        price: "$2.99"
-      },
-      {
-        id: "onesearch",
-        slug: "onesearch",
-        name: "OneSearch",
-        shortDescription: "Bookmark management has never been easier",
-        fullDescription: "OneSearch is a powerful bookmark & multi-AI search browser extension",
-        category: "Browser Extension",
-        platform: ["Chrome"],
-        tags: ["Bookmark Management"],
-        icon: "/images/oneSearch.webp",
-        banner: "/images/oneSearch.png",
-        screenshots: ["/images/oneSearch.png"],
-        links: { download: "#" },
-        version: "2.0.0",
-        releaseDate: "2024-03-01",
-        lastUpdateDate: "2024-12-01",
-        stats: { users: 5000, rating: 4.9 },
-        features: ["Lightning-fast search"],
-        techStack: ["JavaScript"],
-        featured: true,
-        price: "Free"
-      },
-      {
-        id: "omniword",
-        slug: "omniword",
-        name: "OmniWord",
-        shortDescription: "Selection translation with AI word storytelling",
-        fullDescription: "Selection translation + popup dictionary with AI etymology/affix/context insights for deeper understanding.",
-        category: "Browser Extension",
-        platform: ["Chrome", "Microsoft Edge"],
-        tags: ["Selection Translation", "AI Translation"],
-        icon: "/images/OmniWord.png",
-        banner: "/images/OmniWordPoster.png",
-        screenshots: ["/images/OmniWordPoster.png"],
-        links: { 
-          chrome: "https://chromewebstore.google.com/detail/iljgnmpnjfimmjfielhfecogghncdgjb?utm_source=item-share-cb",
-          edge: "https://microsoftedge.microsoft.com/addons/detail/omniword-%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91/lpfaifjlmdbknabibdbglanhfdjnljgo"
-        },
-        version: "1.0.0",
-        releaseDate: "2024-01-01",
-        lastUpdateDate: "2024-01-01",
-        stats: { users: 2000, rating: 4.8 },
-        features: ["Instant selection translation", "AI deep dives"],
-        techStack: ["TypeScript"],
-        featured: true,
-        price: "Free"
-      }
-    ]
-  }
-};
+export default async function HomePage({ params }: PageProps) {
+  const { lang } = await params;
+  const requestedLocale = lang;
+  const locale = i18n.locales.includes(requestedLocale)
+    ? requestedLocale
+    : i18n.defaultLocale;
 
-export default function Home({ params }: { params: Promise<{ lang: Locale }> }) {
-  const resolvedParams = use(params);
-  const dict = dictionaries[resolvedParams.lang] || dictionaries.en;
-  const apps = appsData[resolvedParams.lang]?.apps || appsData.en.apps;
-  const featuredApps = apps.filter(app => app.featured);
-  const otherApps = apps.filter(app => !app.featured).slice(0, 3);
+  const [dictionary, apps] = await Promise.all([
+    getDictionary(locale),
+    getAppsData(locale),
+  ]);
+
+  const homeDict = dictionary.home ?? {};
+  const commonDict = dictionary.common ?? {};
+
+  const featuredApps = apps.filter((app) => app.featured);
+  const otherApps = apps.filter((app) => !app.featured).slice(0, 3);
 
   return (
     <div className="space-y-16">
-      {/* 英雄区域 - 精选应用轮播 */}
       {featuredApps.length > 0 && (
-        <FeaturedCarousel apps={featuredApps} autoPlayInterval={8000} />
+        <FeaturedCarousel
+          apps={featuredApps}
+          locale={locale}
+          autoPlayInterval={8000}
+        />
       )}
-      
-      {/* 其他应用展示 */}
+
       {otherApps.length > 0 && (
         <section className="container mx-auto px-4 py-12">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">{dict.home.moreApps}</h2>
+            <h2 className="text-3xl font-bold mb-4">
+              {homeDict.moreApps ?? DEFAULT_MORE_APPS}
+            </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              {dict.home.moreAppsDescription}
+              {homeDict.moreAppsDescription ?? DEFAULT_MORE_APPS_DESCRIPTION}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {otherApps.map((app) => (
-              <AppCard key={app.id} app={app} />
+              <AppCard key={app.id} app={app} locale={locale} />
             ))}
           </div>
-          
+
           <div className="text-center">
             <Button asChild size="lg">
-              <Link href={`/${resolvedParams.lang}/apps`}>{dict.common.viewAll}</Link>
+              <Link href={`/${locale}/apps`}>
+                {commonDict.viewAll ?? DEFAULT_VIEW_ALL}
+              </Link>
             </Button>
           </div>
         </section>
       )}
-      
-      {/* 关于我的简介 */}
+
       <section className="bg-muted/50 py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">{dict.home.aboutMe}</h2>
+          <h2 className="text-3xl font-bold mb-6">
+            {homeDict.aboutMe ?? DEFAULT_ABOUT_ME}
+          </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            {dict.home.aboutMeDescription}
+            {homeDict.aboutMeDescription ?? DEFAULT_ABOUT_ME_DESCRIPTION}
           </p>
           <Button asChild variant="outline" size="lg">
-            <Link href={`/${resolvedParams.lang}/about`}>{dict.common.learnMore}</Link>
+            <Link href={`/${locale}/about`}>
+              {commonDict.learnMore ?? DEFAULT_LEARN_MORE}
+            </Link>
           </Button>
         </div>
       </section>
